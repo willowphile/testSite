@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+
+            pendo.initialize({
+
+                visitor: {
+                    id: "jeopardy"
+                },
+
+                account: {
+                    id: "jeopardy"
+
+                }
+            });
+        })('87bea2e6-3d7c-47d8-76fd-2b2c05f0057a');
+
+    </script>
+
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="jeopardy.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+    <script>
+        function myFunction(element, clr) {
+            element.style.color = clr;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="header">
+        <img class="headerIcon" src="img/grimace.png">
+        <h1>Jeopardy!</h1><img class="headerIcon" src="img/grimaceLeft.png">
+    </div>
+
+    <div class="row">
+        <div class="main">
+            <table>
+                <!--                 
+                <tr>
+                <td colspan=5><h1>Biomedical Blazer!</h1> </td>
+                </tr> 
+-->
+                <tr>
+                    <th>
+                        <h1> IN SHORT </h1>
+                    </th>
+                    <th>
+                        <h1> AGENT/SNIPPET COMMANDS </h1>
+                    </th>
+                    <th>
+                        <h1> ALL ABOUT TS </h1>
+                    </th>
+                    <th>
+                        <h1> API </h1>
+                    </th>
+                    <th>
+                        <h1> POTPOURRI </h1>
+                    </th>
+                </tr>
+                <tr>
+                    <td id="1cat100" onclick="myFunction(this, 'grey')">
+                        <h1> $100 </h1>
+                    </td>
+                    <td id="2cat100" onclick="myFunction(this, 'grey')">
+                        <h1> $100 </h1>
+                    </td>
+                    <td id="3cat100" onclick="myFunction(this, 'grey')">
+                        <h1> $100 </h1>
+                    </td>
+                    <td id="4cat100" onclick="myFunction(this, 'grey')">
+                        <h1> $100 </h1>
+                    </td>
+                    <td id="5cat100" onclick="myFunction(this, 'grey')">
+                        <h1> $100 </h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="1cat200" onclick="myFunction(this, 'grey')">
+                        <h1> $200 </h1>
+                    </td>
+                    <td id="2cat200" onclick="myFunction(this, 'grey')">
+                        <h1> $200 </h1>
+                    </td>
+                    <td id="3cat200" onclick="myFunction(this, 'grey')">
+                        <h1> $200 </h1>
+                    </td>
+                    <td id="4cat200" onclick="myFunction(this, 'grey')">
+                        <h1> $200 </h1>
+                    </td>
+                    <td id="5cat200" onclick="myFunction(this, 'grey')">
+                        <h1> $200 </h1>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="1cat300" onclick="myFunction(this, 'grey')">
+                        <h1> $300 </h1>
+                    </td>
+                    <td id="2cat300" onclick="myFunction(this, 'grey')">
+                        <h1> $300 </h1>
+                    </td>
+                    <td id="3cat300" onclick="myFunction(this, 'grey')">
+                        <h1> $300 </h1>
+                    </td>
+                    <td id="4cat300" onclick="myFunction(this, 'grey')">
+                        <h1> $300 </h1>
+                    </td>
+                    <td id="5cat300" onclick="myFunction(this, 'grey')">
+                        <h1> $300 </h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="1cat400" onclick="myFunction(this, 'grey')">
+                        <h1> $400 </h1>
+                    </td>
+                    <td id="2cat400" onclick="myFunction(this, 'grey')">
+                        <h1> $400 </h1>
+                    </td>
+                    <td id="3cat400" onclick="myFunction(this, 'grey')">
+                        <h1> $400 </h1>
+                    </td>
+                    <td id="4cat400" onclick="myFunction(this, 'grey')">
+                        <h1> $400 </h1>
+                    </td>
+                    <td id="5cat400" onclick="myFunction(this, 'grey')">
+                        <h1> $400 </h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="1cat500" onclick="myFunction(this, 'grey')">
+                        <h1> $500 </h1>
+                    </td>
+                    <td id="2cat500" onclick="myFunction(this, 'grey')">
+                        <h1> $500 </h1>
+                    </td>
+                    <td id="3cat500" onclick="myFunction(this, 'grey')">
+                        <h1> $500 </h1>
+                    </td>
+                    <td id="4cat500" onclick="myFunction(this, 'grey')">
+                        <h1> $500 </h1>
+                    </td>
+                    <td id="5cat500" onclick="myFunction(this, 'grey')">
+                        <h1> $500 </h1>
+                    </td>
+                </tr>
+            </table>
+
+            <script>
+                document.getElementsByTagName('td').addEventListener("click", function () { console.log("Hello World!"); }, true);
+            </script>
+        </div>
+    </div>
+    <div class="footer">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+        <img class="footerImg" src="img/dumpsterFire.gif">
+    </div>
+
+</body>
+
+</html>

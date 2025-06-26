@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="firstfile.js"></script>
+  <script>
+    //var random_number = Math.floor(Math.random()*500000+100000);
+    //var accountArray= ["Clovis_Bray_Corporation", "Ishtar_Collective", "Operation_Babydog"];
+    //var random_account= accountArray[Math.floor(Math.random()*accountArray.length)];
+    // if using the three above to randomize accounts, be sure to update account id below
+    (function (apiKey) {
+      (function (p, e, n, d, o) {
+        var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
+        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+          o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+        })(v[w]);
+        y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+        z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+      })(window, document, 'script', 'pendo');
+
+      // Call this whenever information about your visitors becomes available
+      // Please use Strings, Numbers, or Bools for value types.
+      pendo.initialize({
+        visitor: {
+          id: user_id,   // Required if user is logged in
+          email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+          full_name: user_full_name,// Recommended if using Pendo Feedback
+          language: user_language,
+          random: user_random_data
+
+          // You can add any additional visitor level key-values here,
+          // as long as it's not one of the above reserved names.
+        },
+
+        account: {
+          id: user_account_id // Highly recommended
+        }
+      });
+    })('87bea2e6-3d7c-47d8-76fd-2b2c05f0057a');
+  </script>
+
+  <title>Page Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+        /* Main column */
+    * {
+      background-color: lavender;
+
+    }
+
+    /* Main column */
+    .main {
+      background-color: lavender;
+
+    }
+    /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 700px) {
+      .row {
+        flex-direction: column;
+      }
+    }
+
+    /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+    @media screen and (max-width: 400px) {
+      .navbar a {
+        float: none;
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+  <div class="main">
+    <h2>But also cats!!</h2>
+    <p>(This frame has a different api key)</p>
+    <button
+      onclick="location.href = 'https://cdn.shopify.com/s/files/1/0344/6469/files/siamese_6d2239ab-9ed0-4ba7-84b9-f98a1b179257.jpg?v=1566853075';"
+      id="myButton" class="btn arc">Siamese</button>
+    <button onclick="location.href = 'https://media.giphy.com/media/5gUnOrltPvZzW/giphy.gif';" id="myButton"
+      class="btn void">Black Cats</button>
+    <button
+      onclick="location.href = 'https://media.wired.com/photos/5cdefb92b86e041493d389df/1:1/w_988,h_988,c_limit/Culture-Grumpy-Cat-487386121.jpg';"
+      id="myButton" class="btn solar">No</button>
+    <br><br>
+    <img src="img/wellHi.gif">
+
+</body>
+
+</html>

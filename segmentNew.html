@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="styles.css">
+   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+   <script>
+      var dt = new Date();
+      document.getElementById("datetime").innerHTML = dt.toLocaleString();
+   </script>
+   <script>
+      !function () {
+         var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+            analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"]; analytics.factory = function (e) { return function () { var t = Array.prototype.slice.call(arguments); t.unshift(e); analytics.push(t); return analytics } }; for (var e = 0; e < analytics.methods.length; e++) { var key = analytics.methods[e]; analytics[key] = analytics.factory(key) } analytics.load = function (key, e) { var t = document.createElement("script"); t.type = "text/javascript"; t.async = !0; t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(t, n); analytics._loadOptions = e }; analytics._writeKey = "yg9SWXMqQrvcvm5og2wyxiomzZ9QkMAf"; analytics.SNIPPET_VERSION = "4.13.2";
+            analytics.load("yg9SWXMqQrvcvm5og2wyxiomzZ9QkMAf", {
+               user: {
+                  persist: false
+               },
+               group: {
+                  persist: false
+               }
+            });
+            analytics.page();
+            analytics.identify("segmentVisitorAnna", {
+            name: "segmentVisitorAnna",
+            random: "segmentVisitor",
+            timestamp: dt
+         });
+         analytics.group('segmentAccountAnna', {
+            name: "segmentAccountAnna",
+            thisIsOnlyASegmentMetadataField: "oh hai"
+         });
+         }
+      }();
+   </script>
+
+   <title>Segment.io/.com/whatever</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+   <div class="header">
+      <h1>Oh hai</h1>
+      <p>I am a website</p>
+   </div>
+
+   <!--Navigation bar-->
+   <div id="nav-placeholder">
+
+   </div>
+
+   <script>
+      $(function () {
+         $("#nav-placeholder").load("navbar.html");
+      });
+   </script>
+   <!--end of Navigation bar-->
+
+   <div class="row">
+      <div class="side">
+         <h2>Stuff</h2>
+         <img src="img/rainbowEmblem.png" width="300"><br>
+         <img src="img/catEmblem.png" width="300"><br>
+         <img src="img/heartEmblem.png" width="300"><br>
+         <br>
+         <SCRIPT LANGUAGE="JAVASCRIPT">
+
+            var r_text = new Array();
+            r_text[0] = "Lorem ipsum nightstalker fatebringer.";
+            r_text[1] = "Lorem ipsum witherhoard ikelos.";
+            r_text[2] = "Lorem ipsum stasis thunderlord.";
+
+            var i = Math.floor(r_text.length * Math.random());
+
+            document.write(r_text[i]);
+
+         </script>
+         <p>
+            <span id="datetime"></span>
+         </p>
+         <script>
+            var dt = new Date();
+            document.getElementById("datetime").innerHTML = dt.toLocaleString();
+         </script>
+      </div>
+      <div class="main">
+         <div>
+            <h2>Segment.io Visitor Testing</h2>
+
+            <form>
+               <p>
+                  <label for="visitorField1">Enter a new visitorId: </label>
+                  <input type="text" id="visitorField1" value="segmentTestArthur"
+                     style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+               </p>
+               <p>
+                  <label for="visitorField2">What is your name: </label>
+                  <input type="text" id="visitorField2" value="King Arthur of the Britons"
+                     style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+               </p>
+               <p>
+                  <label for="toSeekTheGrail">What is your quest: </label>
+                  <input type="text" id="toSeekTheGrail" value="To seek the Grail"
+                     style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+               </p>
+               <p>
+                  <label for="africanOrEuropean">What is the airspeed velocity of an unladen swallow: </label>
+                  <input type="text" id="africanOrEuropean" value="what? i don't know that"
+                     style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+               </p>
+            </form>
+            <br>
+            <button onclick="identifyNewVisitor()" class="btn void"
+               style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>identify!</button>
+            <script type="text/javascript">
+               function identifyNewVisitor() {
+                  analytics.identify(document.getElementById("visitorField1").value, {
+                     name: document.getElementById("visitorField2").value,
+                     quest: document.getElementById("toSeekTheGrail").value,
+                     airspeedVelocity: document.getElementById("africanOrEuropean").value,
+                  });
+               }
+            </script>
+
+         </div>
+
+
+</body>
+
+</html>

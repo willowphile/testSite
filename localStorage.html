@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track', 'clearSession'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            pendo.initialize({
+                //by adding the events section below, it clears any exisitng visitorId
+                //that the agent may be holding onto from a previous page
+                events: {
+                    ready: function () {
+                        console.log('calling clearSession');
+                        pendo.clearSession();
+                    }
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+
+    <title>Alisyn's Anonymous</title>
+    <!-- <meta name="referrer" content="no-referrer" /> -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am a website</p>
+    </div>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navbar.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+    <div class="row">
+        <div class="side">
+            <h2>Stuff</h2>
+            <img src="img/rainbowEmblem.png" width="300"><br>
+            <img src="img/catEmblem.png" width="300"><br>
+            <img src="img/heartEmblem.png" width="300"><br>
+            <br>
+            <SCRIPT LANGUAGE="JAVASCRIPT">
+
+                var r_text = new Array();
+                r_text[0] = "Lorem ipsum nightstalker fatebringer.";
+                r_text[1] = "Lorem ipsum witherhoard ikelos.";
+                r_text[2] = "Lorem ipsum stasis thunderlord.";
+
+                var i = Math.floor(r_text.length * Math.random());
+
+                document.write(r_text[i]);
+
+            </script>
+            <p>
+                <span id="datetime"></span>
+            </p>
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = dt.toLocaleString();
+            </script>
+        </div>
+        <div class="main">
+            <div>
+                <h2>Who am I?</h2>
+                <p>This page initializes anonymously. Click here to view the current visitor ID.</p>
+                <button onclick="getVisitorId()" class="btn arc" id="getVisitorId"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>getVisitorId</button>
+
+                <h2 id="getVisitorIdOutput" style="color:dodgerblue; display:inline-block; padding-left: 20px;"></h2>
+
+                <script type="text/javascript">
+                    function getVisitorId() {
+                        document.getElementById("getVisitorIdOutput").innerHTML = pendo.getVisitorId()
+                    }
+                </script>
+                <br> <br>
+                <button onclick="getAccountId()" class="btn arc" id="getAccountId"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>getAccountId</button>
+
+                <h2 id="getAccountIdOutput" style="color:dodgerblue; display:inline-block; padding-left: 20px;"></h2>
+
+                <script type="text/javascript">
+                    function getAccountId() {
+                        let value = pendo.getAccountId();
+                        console.log("account id is " + value);
+                        if (value != null && value.length > 0) {
+                            document.getElementById("getAccountIdOutput").innerHTML = value;
+                        } else if (value = null) {
+                            document.getElementById("getAccountIdOutput").innerHTML = 'account ID is null';
+                        } else {
+                            document.getElementById("getAccountIdOutput").innerHTML = 'account ID is empty';
+                        }
+                        return;
+
+                    }
+                </script>
+            </div>
+            <hr>
+            <div>
+                <h2>Identify with Local Storage</h2>
+
+                Enter your visitorId: <input type="text" id="visitorField"
+                    style='border:solid 1px black;height: 40px;vertical-align: middle;'>
+
+                Enter your accountId: <input type="text" id="accountField"
+                    style='border:solid 1px black;height: 40px;vertical-align: middle;'>
+
+
+                <button onclick="identifyNewVisitor()" class="btn void" id="identify"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>identify!</button>
+                <script type="text/javascript">
+                    function identifyNewVisitor() {
+                        let pendoVisitor = document.getElementById("visitorField").value;
+                        let lowerVisitor = pendoVisitor.toLowerCase();
+                        let pendoAccount = document.getElementById("accountField").value;
+                        let lowerAccount = pendoAccount.toLowerCase();
+
+                        pendo.identify({
+                            visitor: {
+                                id: lowerVisitor,
+                                random: "autoGenerated"
+                            },
+                            account: {
+                                id: lowerAccount
+                            }
+                        });
+                        localStorage.setItem('visitor', lowerVisitor);
+                        localStorage.setItem('account', lowerAccount);
+                        console.log("visitor is ", lowerVisitor);
+                        console.log("account is ", lowerAccount);
+                        window.location.href = "/localStorage2.html";
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            pendo.initialize({
+                visitor: {
+                    id: user_id,
+                    email: user_email,
+                    full_name: user_full_name,
+                    language: "en_GB",
+                    random: user_random_data
+                },
+
+                account: {
+                    id: user_account_id,
+                    type: user_account_type
+                },
+
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                },
+            });
+        })('87bea2e6-3d7c-47d8-76fd-2b2c05f0057a');
+    </script>
+    <title>Alisyn's Playground</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am an iframe</p>
+        <p>87bea2e6-3d7c-47d8-76fd-2b2c05f0057a</p>
+    </div>
+
+    <div class="row">
+        <div class="main">
+            <div>
+                <button onclick="dummyClick()" class="btn arc" id="dummyClick"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
+                    for a dummy event!</button>
+
+                <script type="text/javascript">
+                    function dummyClick() {
+                        console.log("yeah, it's clicked");
+                    }
+                </script>
+            </div>
+            <div>
+                <button onclick="getVisitorId()" class="btn arc" id="getVisitorId"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>getVisitorId</button>
+
+                <p id="getVisitorIdOutput"></p>
+
+                <script type="text/javascript">
+                    function getVisitorId() {
+                        document.getElementById("getVisitorIdOutput").innerHTML = pendo.getVisitorId()
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="firstfile.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    (function (apiKey) {
+      (function (p, e, n, d, o) {
+        var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
+        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+          o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+        })(v[w]);
+        y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+        z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+      })(window, document, 'script', 'pendo');
+
+      pendo.initialize({
+        visitor: {
+          id: user_id,   // Required if user is logged in
+          email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+          full_name: user_full_name,// Recommended if using Pendo Feedback
+          language: "en_GB",
+          random: "en_GB",
+          boolean: user_boolean
+        },
+        account: {
+          id: user_account_id // Highly recommended
+        }
+      });
+    })('a93e68a6-46fd-443a-699f-aa31985c066d');
+  </script>
+
+  <title>Sneaky URLs</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+  <div class="header">
+    <img class="headerIcon" src="7513466.png" width="20"><br><br>
+    <h1>Hello</h1>
+    <p>I am a website</p>
+  </div>
+
+  <!--Navigation bar-->
+  <div id="nav-placeholder">
+
+  </div>
+
+  <script>
+    $(function () {
+      $("#nav-placeholder").load("navbar.html");
+    });
+  </script>
+  <!--end of Navigation bar-->
+
+  <div class="row">
+    <div class="side">
+      <h2>Stuff</h2>
+      <img src="img/rainbowEmblem.png" width="300"><br>
+      <img src="img/catEmblem.png" width="300"><br>
+      <img src="img/heartEmblem.png" width="300"><br>
+      <p>Lorem ipsum nightstalker fatebringer.</p>
+
+    </div>
+    <div class="main">
+      <div>
+        <p class="big">
+          Open up the console and enableLogging() to follow along.
+          <a href="https://agent.pendo.io/advanced/location">Link to docs</a>
+        </p>
+
+        <br>
+        <button onclick="getURL()" class="btn arc" id="getURL"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>show me the
+          url</button>
+
+        <p class="big" id="getURLOutput"></p>
+
+        <script type="text/javascript">
+          function getURL() {
+            document.getElementById("getURLOutput").innerHTML = pendo.getNormalizedUrl()
+          }
+        </script>
+      </div>
+      <hr>
+      <div>
+        <h2>setUrl</h2>
+        Enter a whoooole new name: <input type="text" class="textbox" id="setUrlField" value="https://cats.com/cats">
+        <button onclick="updateUrl()" class="btn arc" id="updateUrlButton"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>update!</button>
+        <p>*must include the full URL, i.e. https://www.geocities.com/underConstruction</p>
+        <script type="text/javascript">
+          function updateUrl() {
+            var urlVal = document.getElementById("setUrlField").value;
+            pendo.location.setUrl(urlVal);
+            console.log("URL has been updated to " + urlVal + ". try running a normalizedUrl command");
+          }
+        </script>
+        <xmp style='font-size: 10px;'>
+          <script type="text/javascript">
+            function updateUrl() {
+              var urlVal = document.getElementById("setUrlField").value;
+              pendo.location.setUrl(urlVal);
+              console.log("URL has been updated to " + urlVal + ". try running a normalizedUrl command");
+            }
+          </script>
+        </xmp>
+      </div>
+      <hr>
+      <div>
+        <h2>addTransforms - hostname Replace</h2>
+        Enter a new domain: <input type="text" class="textbox" id="addTransformsField" value="boringWebPageName">
+        <button onclick="updateUrl1()" class="btn arc" id="updateUrlButton"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>update!</button>
+        <p>*just the hostname/domain part of the URL</p>
+        <script type="text/javascript">
+          function updateUrl1() {
+            var newDomain = document.getElementById("addTransformsField").value;
+            pendo.location.addTransforms([{
+              'attr': 'hostname',
+              'action': 'Replace',
+              'data': newDomain
+            }]);
+            console.log("URL has been updated to " + urlVal + ". try running a normalizedUrl command");
+          }
+        </script>
+        <xmp style='font-size: 16px;'>
+          <script type="text/javascript">
+            function updateUrl1() {
+              var newDomain = document.getElementById("addTransformsField").value;
+              pendo.location.addTransforms([{
+                'attr': 'hostname',
+                'action': 'Replace',
+                'data': newDomain
+              }]);
+            }
+          </script>
+        </xmp>
+      </div>
+      <hr>
+      <div>
+        <h2>addTransforms - pathname Replace</h2>
+        Enter a new path: <input type="text" class="textbox" id="pathChange" value="boringWebPageName">
+        <button onclick="pathChange()" class="btn arc" id="pathChangeButton"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>update!</button>
+        <p>*the host/domain and any existing query strings will be maintained</p>
+        <script type="text/javascript">
+          function pathChange() {
+            var pathChange = document.getElementById("pathChange").value;
+            pendo.location.addTransforms([{
+              'attr': 'pathname',
+              'action': 'Replace',
+              'data': pathChange
+            }]);
+            console.log(pathChange)
+          }
+        </script>
+        <xmp style='font-size: 10px;'>
+          <script type="text/javascript">
+            function pathChange() {
+              var pathChange = document.getElementById("pathChange").value;
+              pendo.location.addTransforms([{
+                'attr': 'pathname',
+                'action': 'Replace',
+                'data': pathChange
+              }]);
+              console.log(pathChange)
+            }
+          </script>
+        </xmp>
+      </div>
+      <hr>
+      <div>
+        <h2>addTransforms - excludeKeys</h2>
+        query string to remove: <input type="text" class="textbox" id="excludeKeys" value="boringWebPageName">
+        <button onclick="excludeKeys()" class="btn arc" id="excludeKeyButton"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>update!</button>
+        <p>*you can't remove the pendo-added one for title</p>
+        <script type="text/javascript">
+          function excludeKeys() {
+            var keysToExclude = document.getElementById("excludeKeys").value;
+            pendo.location.addTransforms([{
+              'attr': 'search',
+              'action': 'ExcludeKeys',
+              'data': [keysToExclude]
+            }]);
+            console.log(keysToExclude)
+          }
+        </script>
+        <xmp style='font-size: 10px;'>
+          <script type="text/javascript">
+            function excludeKeys() {
+              var keysToExclude = document.getElementById("excludeKeys").value;
+              pendo.location.addTransforms([{
+                'attr': 'search',
+                'action': 'ExcludeKeys',
+                'data': [keysToExclude]
+              }]);
+              console.log(keysToExclude)
+            }
+          </script>
+        </xmp>
+      </div>
+      <hr>
+      <div>
+        <h2>addTransforms - delete ALL query string params</h2>
+        <button onclick="deleteKeys()" class="btn arc" id="deleteKeys"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>balete</button>
+        <script type="text/javascript">
+          function deleteKeys() {
+            pendo.location.addTransforms([{
+              'attr': 'search',
+              'action': 'AllowOnlyKeys',
+              'data': ['']
+            }]);
+          }
+        </script>
+        <xmp style='font-size: 10px;'>
+          <script type="text/javascript">
+            function deleteKeys() {
+              pendo.location.addTransforms([{
+                'attr': 'search',
+                'action': 'AllowOnlyKeys',
+                'data': ['']
+              }]);
+            }
+          </script>
+        </xmp>
+      </div>
+      <hr>
+      <div>
+        <h2>addTransforms - replace query params</h2>
+        new query string: <input type="text" class="textbox" id="replaceKeys" value="boringWebPageName">
+        <button onclick="replaceKeys()" class="btn arc" id="replaceKeyButton"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>replace!</button>
+        <p>*you can't replace the pendo-added one for title</p>
+        <script type="text/javascript">
+          function replaceKeys() {
+            var newQueryString = document.getElementById("replaceKeys").value;
+            pendo.location.addTransforms([{
+              'attr': 'search',
+              'action': 'Replace',
+              'data': [newQueryString]
+            }]);
+            console.log(newQueryString)
+          }
+        </script>
+        <xmp style='font-size: 10px;'>
+          <script type="text/javascript">
+            function replaceKeys() {
+              var newQueryString = document.getElementById("replaceKeys").value;
+              pendo.location.addTransforms([{
+                'attr': 'search',
+                'action': 'Replace',
+                'data': [newQueryString]
+              }]);
+              console.log(newQueryString)
+            }
+          </script>
+        </xmp>
+      </div>
+      <hr>
+      <div>
+        <h2>reset to original URL</h2>
+        <button onclick="reset()" class="btn arc" id="resetButton"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>reset the url!</button>
+        <script type="text/javascript">
+          function reset() {
+            pendo.location.useBrowserUrl()
+          }
+        </script>
+        <xmp style='font-size: 10px;'>
+          <script type="text/javascript">
+            function reset() {
+              pendo.location.useBrowserUrl()
+            }
+          </script>
+        </xmp>
+      </div>
+      <hr>
+
+    </div>
+  </div>
+  <div class="footer">
+    <h2>I want to go to there</h2>
+    <a href="https://www.bungie.com">Bungo</a> |
+    <a href="https://www.d2checklist.com">D2 Checklist</a> |
+    <a href="https://www.destinyitemmanager.com">DIM</a>
+  </div>
+
+</body>
+
+</html>

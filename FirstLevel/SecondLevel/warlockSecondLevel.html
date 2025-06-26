@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WKHRP5F');</script>
+  <!--
+  <script src="../../firstfile.js"></script>
+  <script>
+    //var random_number = Math.floor(Math.random()*500000+100000);
+    //var accountArray= ["Clovis_Bray_Corporation", "Ishtar_Collective", "Operation_Babydog"];
+    //var random_account= accountArray[Math.floor(Math.random()*accountArray.length)];
+    // if using the three above to randomize accounts, be sure to update account id below
+    (function(apiKey){
+        (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+        v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
+            o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+            y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+            z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            pendo.initialize({
+                visitor: {
+                    id:           user_id,   // Required if user is logged in
+                    email:        user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name:    user_full_name,// Recommended if using Pendo Feedback
+                    language:     user_language
+                    // role:         // Optional
+
+                    // You can add any additional visitor level key-values here,
+                    // as long as it's not one of the above reserved names.
+                },
+
+                account: {
+                    id:           user_account_id // Highly recommended
+                    // name:         // Optional
+                    // is_paying:    'true' // Recommended if using Pendo Feedback
+                    // monthly_value: '2.49' // Recommended if using Pendo Feedback
+                    // planLevel:    // Optional
+                    // planPrice:    // Optional
+                    // creationDate: // Optional
+
+                    // You can add any additional account level key-values here,
+                    // as long as it's not one of the above reserved names.
+                }
+            });
+    })('a93e68a6-46fd-443a-699f-aa31985c066d');
+</script>
+-->
+<title>Voidwalker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #6A0DAD;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Active/current link */
+.navbar a.active {
+  background-color: #666;
+  color: white;
+}
+
+/* Column container */
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/*buttons */
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Green */
+.green {
+  color: green;
+}
+
+.green:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Blue */
+.arc {
+  color: dodgerblue;
+}
+
+.arc:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.solar {
+  color: orange;
+}
+
+.solar:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.void {
+  color: purple;
+}
+
+.void:hover {
+  background: purple;
+  color: white;
+}
+
+/* Main column */
+.main {
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+<link rel="shortcut icon" type="image/jpg" href="../../engram.ico"/>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKHRP5F"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+<div class="header">
+  <h1>Hello</h1>
+  <p>I am a website</p>
+</div>
+
+<div class="navbar">
+  <a href="../../home.html" class="active">Home</a>
+<a href="../../warlock.html">Warlock</a>
+<a href="../../hunter.html">Hunter</a>
+  <a href="../../titan.html">Crayon-eater</a>
+  <a href="../../cats.html" class="right">Cats</a>
+</div>
+
+<div class="row">
+  <div class="side">
+    <h2>Stuff</h2>
+    <img src="../../img/rainbowEmblem.png" width="300"><br>
+    <img src="../../img/catEmblem.png" width="300"><br>
+    <img src="../../img/heartEmblem.png" width="300"><br>
+    <p>Lorem ipsum nightstalker fatebringer.</p>
+
+  </div>
+  <div class="main">
+    <h2>Warlocks</h2>
+<button onclick="location.href = '../warlockFirstLevel.html';" id="myButton" class="btn arc">Stormcaller</button>
+<button onclick="location.href = '#';" id="myButton" class="btn void">Voidwalker</button>
+<button onclick="location.href = 'https://destiny.fandom.com/wiki/Dawnblade';" id="myButton" class="btn solar">Dawnblade</button>
+<br>
+<br>
+<p>Vex stormcaller void mara titan io nokris no time to explain</p><br>
+<img src="../../img/void.jpg" width="400">
+
+<!-- Hold onto ths for later
+<button id="myButton" class="float-left submit-button" >Home</button>
+
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "www.yoursite.com";
+    };
+</script>
+-->
+
+
+    <br>    <br>
+
+<button onclick="location.href = 'https://www.bungie.com';" id="myButton" class="btn red">Bungo</button>
+<button onclick="location.href = 'https://www.d2checklist.com';" id="myButton" class="btn green">D2Checklist</button>
+<button onclick="location.href = 'https://www.destinyitemmanager.com';" id="myButton" class="btn default">DIM</button>
+</div>
+</div>
+<div class="footer">
+  <h2>I want to go to there</h2>
+  <a href="https://www.bungie.com">Bungo</a> |
+  <a href="https://www.d2checklist.com">D2 Checklist</a> |
+  <a href="https://www.destinyitemmanager.com">DIM</a>
+</div>
+
+</body>
+</html>

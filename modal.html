@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            pendo.initialize({
+                //excludeAllText: true,
+                //DisableGuides: True,
+                visitor: {
+                    id: user_id,   // Required if user is logged in
+                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name: user_full_name,// Recommended if using Pendo Feedback
+                    language: "en_GB",
+                    random: user_random_data
+                },
+
+                account: {
+                    id: user_account_id, // Highly recommended
+                    type: user_account_type// Optional
+                },
+
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .modal {
+            top: 200px;
+            height: 50% !important;
+        }
+    </style>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+    <div class="header">
+        <img class="headerIcon" src="img/7513466.png" width="20"><br><br>
+        <h1>Hello</h1>
+        <p>I am a website</p>
+    </div>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navbar.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+    <div class="row">
+        <div class="side">
+            <h2>Stuff</h2>
+            <img src="img/rainbowEmblem.png" width="300"><br>
+            <img src="img/catEmblem.png" width="300"><br>
+            <img src="img/heartEmblem.png" width="300"><br>
+            <p>Lorem ipsum nightstalker fatebringer.</p>
+
+        </div>
+        <div class="main">
+            <div class="container">
+                <h2>Modal Scroll Example</h2>
+                <p>Use the .modal-dialog-scrollable class to enable scrolling inside the modal.</p>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="buttonRainbow" data-toggle="modal" data-target="#myModal">
+                    Open modal
+                </button>
+
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h1 class="modal-title">pendo.updateOptions</h1>
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div>
+                                    Enter a new random value: <input type="text" class="textbox" id="newRandomValue"
+                                        value="oh hai!">
+                                    <button onclick="newRandom()" class="buttonRainbow">updateOptions!</button>
+                                    <script type="text/javascript">
+                                        function newRandom() {
+                                            var inputVal = document.getElementById("newRandomValue").value;
+                                            pendo.updateOptions({
+                                                visitor: {
+                                                    random: inputVal
+                                                }
+                                            });
+                                            console.log("Visitor-level agent metadata field 'random' changed to " + inputVal + ". try running a validateInstall()");
+                                        }
+                                    </script>
+                                </div>
+                                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat.</p>
+                                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat.</p>
+                                <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat.</p>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <h2>I want to go to there</h2>
+        <a href="https://www.bungie.com">Bungo</a> |
+        <a href="https://www.d2checklist.com">D2 Checklist</a> |
+        <a href="https://www.destinyitemmanager.com">DIM</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,1111 @@
+[
+    {
+        "type": "guideAdvanced",
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "browser_time": 1651518207397,
+        "url": "https://monday308674.monday.com/boards/2599766308",
+        "props": {
+            "guide_id": "z3oIBAo04Ab-YCBJewh0puzA14k",
+            "guide_step_id": "oaW-YoUWPeanEAGHjxuqOIWIas0",
+            "seen_reason": "launcher",
+            "language": "",
+            "destinationStepId": "4p2hryyKx3CQ0lbq44di9874UC4",
+            "duration": 1802
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "XKDIMC2AhKBqT1wH"
+    }
+]
+
+[
+    {
+        "type": "guideSeen",
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "browser_time": 1651518208913,
+        "url": "https://monday308674.monday.com/boards/2599766372",
+        "props": {
+            "guide_id": "z3oIBAo04Ab-YCBJewh0puzA14k",
+            "guide_step_id": "4p2hryyKx3CQ0lbq44di9874UC4",
+            "reason": "launcher",
+            "language": "",
+            "last_updated_at": 1647782788703,
+            "duration": 7
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "FJf1bn1stIFKZfZV"
+    }
+]
+    
+[
+    {
+        "type": "focus",
+        "browser_time": 1651518208903,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372",
+        "props": {
+            "target": {
+                "tag": "DIV",
+                "id": "pendo-guide-container",
+                "cls": "_pendo-step-container-styles",
+                "title": null,
+                "attrs": {
+                    "tabindex": "-1"
+                },
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "pendo-g-4p2hryyKx3CQ0lbq44di9874UC4",
+                    "cls": "_pendo-step-container-size",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 2,
+                    "childIndex": 2,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "pendo-base",
+                        "cls": "_pendo-step-container _pendo-guide-tt_",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 260,
+                        "childIndex": 118,
+                        "parentElem": {
+                            "tag": "BODY",
+                            "id": "main",
+                            "cls": "dark-app-theme",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 2,
+                            "childIndex": 1
+                        }
+                    }
+                }
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "FJf1bn1stIFKZfZV",
+        "bytes": 820
+    },
+    {
+        "type": "load",
+        "browser_time": 1651518209538,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "load_time": 4596
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "FJf1bn1stIFKZfZV",
+        "bytes": 279
+    }
+]
+
+[
+    {
+        "type": "focus",
+        "browser_time": 1651518209830,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "DIV",
+                "id": "",
+                "cls": "board-content-items",
+                "title": null,
+                "attrs": {
+                    "tabindex": "0"
+                },
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "",
+                    "cls": "board-content-wrapper",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 0,
+                    "childIndex": 0,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "board-content-component_currentBoard",
+                        "cls": "board-content-component currentBoard monday-v2-header-content",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 2,
+                        "childIndex": 2,
+                        "parentElem": {
+                            "tag": "DIV",
+                            "id": "board-wrapper-first-level-content",
+                            "cls": "board-wrapper sticky-feature",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 1,
+                            "childIndex": 1,
+                            "parentElem": {
+                                "tag": "DIV",
+                                "id": "",
+                                "cls": "board-with-keyboard-navigation-component",
+                                "title": null,
+                                "attrs": {
+                                    "tabindex": "-1"
+                                },
+                                "myIndex": 0,
+                                "childIndex": 0,
+                                "parentElem": {
+                                    "tag": "DIV",
+                                    "id": "current-board-component-id",
+                                    "cls": "current-board-component",
+                                    "title": null,
+                                    "attrs": {},
+                                    "myIndex": 0,
+                                    "childIndex": 0,
+                                    "parentElem": {
+                                        "tag": "DIV",
+                                        "id": "first-level-content",
+                                        "cls": "first-level-content react-board",
+                                        "title": null,
+                                        "attrs": {},
+                                        "myIndex": 5,
+                                        "childIndex": 2,
+                                        "parentElem": {
+                                            "tag": "DIV",
+                                            "id": "first-level-content-wrapper",
+                                            "cls": "first-level-content-wrapper first-level-control-pinned",
+                                            "title": null,
+                                            "attrs": {},
+                                            "myIndex": 5,
+                                            "childIndex": 2,
+                                            "parentElem": {
+                                                "tag": "DIV",
+                                                "id": "first-level",
+                                                "cls": "first-level",
+                                                "title": null,
+                                                "attrs": {},
+                                                "myIndex": 3,
+                                                "childIndex": 1,
+                                                "parentElem": {
+                                                    "tag": "DIV",
+                                                    "id": "application-layers",
+                                                    "cls": "application-layers",
+                                                    "title": null,
+                                                    "attrs": {},
+                                                    "myIndex": 7,
+                                                    "childIndex": 2,
+                                                    "parentElem": {
+                                                        "tag": "DIV",
+                                                        "id": "application",
+                                                        "cls": "application   with-top-reminder",
+                                                        "title": null,
+                                                        "attrs": {},
+                                                        "myIndex": 36,
+                                                        "childIndex": 17,
+                                                        "parentElem": {
+                                                            "tag": "BODY",
+                                                            "id": "main",
+                                                            "cls": "dark-app-theme",
+                                                            "title": null,
+                                                            "attrs": {},
+                                                            "myIndex": 2,
+                                                            "childIndex": 1
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "FJf1bn1stIFKZfZV",
+        "bytes": 1967
+    },
+    {
+        "type": "click",
+        "browser_time": 1651518209932,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "DIV",
+                "id": "",
+                "cls": "multiple-person-cell-component",
+                "title": null,
+                "attrs": {},
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "",
+                    "cls": "multiple-person-cell-content",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 0,
+                    "childIndex": 0,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "focus-2599767245-people5",
+                        "cls": "cell-component multiple-person-cell col-identifier-people5",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 0,
+                        "childIndex": 0,
+                        "parentElem": {
+                            "tag": "DIV",
+                            "id": "",
+                            "cls": "grid-cell-component-inner full",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 0,
+                            "childIndex": 0,
+                            "parentElem": {
+                                "tag": "DIV",
+                                "id": "",
+                                "cls": "grid-cell-component-wrapper grid-cell-wrapper-component col-identifier-people5",
+                                "title": null,
+                                "attrs": {},
+                                "myIndex": 0,
+                                "childIndex": 0,
+                                "parentElem": {
+                                    "tag": "DIV",
+                                    "id": "",
+                                    "cls": "grid-cells-row-component",
+                                    "title": null,
+                                    "attrs": {},
+                                    "myIndex": 0,
+                                    "childIndex": 0,
+                                    "parentElem": {
+                                        "tag": "DIV",
+                                        "id": "",
+                                        "cls": "grid-cells-row-component-wrapper",
+                                        "title": null,
+                                        "attrs": {},
+                                        "myIndex": 1,
+                                        "childIndex": 1,
+                                        "parentElem": {
+                                            "tag": "DIV",
+                                            "id": "pulse-2599767245",
+                                            "cls": "pulse-component single-item-height grid-pulse with-menu can-edit",
+                                            "title": null,
+                                            "attrs": {},
+                                            "myIndex": 0,
+                                            "childIndex": 0,
+                                            "parentElem": {
+                                                "tag": "DIV",
+                                                "id": "",
+                                                "cls": "",
+                                                "title": null,
+                                                "attrs": {},
+                                                "myIndex": 0,
+                                                "childIndex": 0,
+                                                "parentElem": {
+                                                    "tag": "DIV",
+                                                    "id": "",
+                                                    "cls": "pulse-component-wrapper board-id-2599766372 first-pulse",
+                                                    "title": null,
+                                                    "attrs": {},
+                                                    "myIndex": 2,
+                                                    "childIndex": 2,
+                                                    "parentElem": {
+                                                        "tag": "DIV",
+                                                        "id": "",
+                                                        "cls": "board-content-items",
+                                                        "title": null,
+                                                        "attrs": {
+                                                            "tabindex": "0"
+                                                        },
+                                                        "myIndex": 0,
+                                                        "childIndex": 0,
+                                                        "parentElem": {
+                                                            "tag": "DIV",
+                                                            "id": "",
+                                                            "cls": "board-content-wrapper",
+                                                            "title": null,
+                                                            "attrs": {},
+                                                            "myIndex": 0,
+                                                            "childIndex": 0,
+                                                            "parentElem": {
+                                                                "tag": "DIV",
+                                                                "id": "board-content-component_currentBoard",
+                                                                "cls": "board-content-component currentBoard monday-v2-header-content",
+                                                                "title": null,
+                                                                "attrs": {},
+                                                                "myIndex": 2,
+                                                                "childIndex": 2,
+                                                                "parentElem": {
+                                                                    "tag": "DIV",
+                                                                    "id": "board-wrapper-first-level-content",
+                                                                    "cls": "board-wrapper sticky-feature",
+                                                                    "title": null,
+                                                                    "attrs": {},
+                                                                    "myIndex": 1,
+                                                                    "childIndex": 1,
+                                                                    "parentElem": {
+                                                                        "tag": "DIV",
+                                                                        "id": "",
+                                                                        "cls": "board-with-keyboard-navigation-component",
+                                                                        "title": null,
+                                                                        "attrs": {
+                                                                            "tabindex": "-1"
+                                                                        },
+                                                                        "myIndex": 0,
+                                                                        "childIndex": 0,
+                                                                        "parentElem": {
+                                                                            "tag": "DIV",
+                                                                            "id": "current-board-component-id",
+                                                                            "cls": "current-board-component",
+                                                                            "title": null,
+                                                                            "attrs": {},
+                                                                            "myIndex": 0,
+                                                                            "childIndex": 0,
+                                                                            "parentElem": {
+                                                                                "tag": "DIV",
+                                                                                "id": "first-level-content",
+                                                                                "cls": "first-level-content react-board",
+                                                                                "title": null,
+                                                                                "attrs": {},
+                                                                                "myIndex": 5,
+                                                                                "childIndex": 2,
+                                                                                "parentElem": {
+                                                                                    "tag": "DIV",
+                                                                                    "id": "first-level-content-wrapper",
+                                                                                    "cls": "first-level-content-wrapper first-level-control-pinned",
+                                                                                    "title": null,
+                                                                                    "attrs": {},
+                                                                                    "myIndex": 5,
+                                                                                    "childIndex": 2,
+                                                                                    "parentElem": {
+                                                                                        "tag": "DIV",
+                                                                                        "id": "first-level",
+                                                                                        "cls": "first-level",
+                                                                                        "title": null,
+                                                                                        "attrs": {},
+                                                                                        "myIndex": 3,
+                                                                                        "childIndex": 1,
+                                                                                        "parentElem": {
+                                                                                            "tag": "DIV",
+                                                                                            "id": "application-layers",
+                                                                                            "cls": "application-layers",
+                                                                                            "title": null,
+                                                                                            "attrs": {},
+                                                                                            "myIndex": 7,
+                                                                                            "childIndex": 2,
+                                                                                            "parentElem": {
+                                                                                                "tag": "DIV",
+                                                                                                "id": "application",
+                                                                                                "cls": "application   with-top-reminder",
+                                                                                                "title": null,
+                                                                                                "attrs": {},
+                                                                                                "myIndex": 36,
+                                                                                                "childIndex": 17,
+                                                                                                "parentElem": {
+                                                                                                    "tag": "BODY",
+                                                                                                    "id": "main",
+                                                                                                    "cls": "dark-app-theme",
+                                                                                                    "title": null,
+                                                                                                    "attrs": {},
+                                                                                                    "myIndex": 2,
+                                                                                                    "childIndex": 1
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "flags": [
+                    "left"
+                ]
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "FJf1bn1stIFKZfZV",
+        "bytes": 3373
+    },
+    {
+        "type": "focus",
+        "browser_time": 1651518210010,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "INPUT",
+                "id": "",
+                "cls": "person-picker-input tt-input focus-visible",
+                "title": null,
+                "attrs": {
+                    "type": "text"
+                },
+                "myIndex": 1,
+                "childIndex": 1,
+                "parentElem": {
+                    "tag": "SPAN",
+                    "id": "",
+                    "cls": "twitter-typeahead",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 0,
+                    "childIndex": 0,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "",
+                        "cls": "person-picker-component",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 0,
+                        "childIndex": 0,
+                        "parentElem": {
+                            "tag": "DIV",
+                            "id": "",
+                            "cls": "person-picker-wrapper",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 0,
+                            "childIndex": 0,
+                            "parentElem": {
+                                "tag": "DIV",
+                                "id": "",
+                                "cls": "person-picker-hotkeys-wrapper",
+                                "title": null,
+                                "attrs": {
+                                    "tabindex": "-1"
+                                },
+                                "myIndex": 1,
+                                "childIndex": 1,
+                                "parentElem": {
+                                    "tag": "DIV",
+                                    "id": "",
+                                    "cls": "multiple-person-dialog-content-component can-change-content with-shadow",
+                                    "title": null,
+                                    "attrs": {
+                                        "tabindex": "-1"
+                                    },
+                                    "myIndex": 0,
+                                    "childIndex": 0,
+                                    "parentElem": {
+                                        "tag": "DIV",
+                                        "id": "",
+                                        "cls": "multiple-person-dialog-content-with-keyboard-navigation-component",
+                                        "title": null,
+                                        "attrs": {
+                                            "tabindex": "-1"
+                                        },
+                                        "myIndex": 0,
+                                        "childIndex": 0,
+                                        "parentElem": {
+                                            "tag": "DIV",
+                                            "id": "",
+                                            "cls": "dialog-with-keyboard-wrapper",
+                                            "title": null,
+                                            "attrs": {},
+                                            "myIndex": 0,
+                                            "childIndex": 0,
+                                            "parentElem": {
+                                                "tag": "DIV",
+                                                "id": "",
+                                                "cls": "ds-dialog-content-component bottom edge-bottom opacity-and-slide-appear opacity-and-slide-appear-active",
+                                                "title": null,
+                                                "attrs": {},
+                                                "myIndex": 0,
+                                                "childIndex": 0,
+                                                "parentElem": {
+                                                    "tag": "DIV",
+                                                    "id": "",
+                                                    "cls": "ds-dialog-content-wrapper",
+                                                    "title": null,
+                                                    "attrs": {
+                                                        "tabindex": "-1"
+                                                    },
+                                                    "myIndex": 0,
+                                                    "childIndex": 0,
+                                                    "parentElem": {
+                                                        "tag": "DIV",
+                                                        "id": "",
+                                                        "cls": "dialog-node",
+                                                        "title": null,
+                                                        "attrs": {},
+                                                        "myIndex": 4,
+                                                        "childIndex": 4,
+                                                        "parentElem": {
+                                                            "tag": "DIV",
+                                                            "id": "board-wrapper-first-level-content",
+                                                            "cls": "board-wrapper sticky-feature",
+                                                            "title": null,
+                                                            "attrs": {},
+                                                            "myIndex": 1,
+                                                            "childIndex": 1,
+                                                            "parentElem": {
+                                                                "tag": "DIV",
+                                                                "id": "",
+                                                                "cls": "board-with-keyboard-navigation-component",
+                                                                "title": null,
+                                                                "attrs": {
+                                                                    "tabindex": "-1"
+                                                                },
+                                                                "myIndex": 0,
+                                                                "childIndex": 0,
+                                                                "parentElem": {
+                                                                    "tag": "DIV",
+                                                                    "id": "current-board-component-id",
+                                                                    "cls": "current-board-component",
+                                                                    "title": null,
+                                                                    "attrs": {},
+                                                                    "myIndex": 0,
+                                                                    "childIndex": 0,
+                                                                    "parentElem": {
+                                                                        "tag": "DIV",
+                                                                        "id": "first-level-content",
+                                                                        "cls": "first-level-content react-board",
+                                                                        "title": null,
+                                                                        "attrs": {},
+                                                                        "myIndex": 5,
+                                                                        "childIndex": 2,
+                                                                        "parentElem": {
+                                                                            "tag": "DIV",
+                                                                            "id": "first-level-content-wrapper",
+                                                                            "cls": "first-level-content-wrapper first-level-control-pinned",
+                                                                            "title": null,
+                                                                            "attrs": {},
+                                                                            "myIndex": 5,
+                                                                            "childIndex": 2,
+                                                                            "parentElem": {
+                                                                                "tag": "DIV",
+                                                                                "id": "first-level",
+                                                                                "cls": "first-level",
+                                                                                "title": null,
+                                                                                "attrs": {},
+                                                                                "myIndex": 3,
+                                                                                "childIndex": 1,
+                                                                                "parentElem": {
+                                                                                    "tag": "DIV",
+                                                                                    "id": "application-layers",
+                                                                                    "cls": "application-layers",
+                                                                                    "title": null,
+                                                                                    "attrs": {},
+                                                                                    "myIndex": 7,
+                                                                                    "childIndex": 2,
+                                                                                    "parentElem": {
+                                                                                        "tag": "DIV",
+                                                                                        "id": "application",
+                                                                                        "cls": "application   with-top-reminder",
+                                                                                        "title": null,
+                                                                                        "attrs": {},
+                                                                                        "myIndex": 36,
+                                                                                        "childIndex": 17,
+                                                                                        "parentElem": {
+                                                                                            "tag": "BODY",
+                                                                                            "id": "main",
+                                                                                            "cls": "dark-app-theme",
+                                                                                            "title": null,
+                                                                                            "attrs": {},
+                                                                                            "myIndex": 2,
+                                                                                            "childIndex": 1
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "FJf1bn1stIFKZfZV",
+        "bytes": 3087
+    }
+]
+[
+    {
+        "type": "guideSeen",
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "browser_time": 1651518211185,
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "guide_id": "z3oIBAo04Ab-YCBJewh0puzA14k",
+            "guide_step_id": "4p2hryyKx3CQ0lbq44di9874UC4",
+            "reason": "launcher",
+            "language": "",
+            "last_updated_at": 1647782788703,
+            "duration": 0
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI"
+    }
+]
+
+[
+    {
+        "type": "guideActivity",
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "browser_time": 1651518212413,
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "guide_id": "z3oIBAo04Ab-YCBJewh0puzA14k",
+            "guide_step_id": "4p2hryyKx3CQ0lbq44di9874UC4",
+            "ui_element_id": "pendo-button-7c70133f",
+            "ui_element_type": "BUTTON",
+            "ui_element_actions": [
+                {
+                    "action": "advanceGuide"
+                }
+            ],
+            "duration": 1228,
+            "language": ""
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI"
+    },
+    {
+        "type": "guideAdvanced",
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "browser_time": 1651518212415,
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "guide_id": "z3oIBAo04Ab-YCBJewh0puzA14k",
+            "guide_step_id": "4p2hryyKx3CQ0lbq44di9874UC4",
+            "seen_reason": "launcher",
+            "language": "",
+            "destinationStepId": "oaW-YoUWPeanEAGHjxuqOIWIas0",
+            "duration": 1230
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI"
+    },
+    {
+        "type": "guideSeen",
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "browser_time": 1651518212509,
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "guide_id": "z3oIBAo04Ab-YCBJewh0puzA14k",
+            "guide_step_id": "oaW-YoUWPeanEAGHjxuqOIWIas0",
+            "reason": "continue",
+            "language": "",
+            "last_updated_at": 1648057003530,
+            "duration": 0
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI"
+    }
+]
+
+[
+    {
+        "type": "focus",
+        "browser_time": 1651518211183,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "DIV",
+                "id": "pendo-guide-container",
+                "cls": "_pendo-step-container-styles",
+                "title": null,
+                "attrs": {
+                    "tabindex": "-1"
+                },
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "pendo-g-4p2hryyKx3CQ0lbq44di9874UC4",
+                    "cls": "_pendo-step-container-size",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 2,
+                    "childIndex": 2,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "pendo-base",
+                        "cls": "_pendo-step-container _pendo-guide-tt_",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 260,
+                        "childIndex": 118,
+                        "parentElem": {
+                            "tag": "BODY",
+                            "id": "main",
+                            "cls": "dark-app-theme",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 2,
+                            "childIndex": 1
+                        }
+                    }
+                }
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI",
+        "bytes": 835
+    },
+    {
+        "type": "focus",
+        "browser_time": 1651518212299,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "BUTTON",
+                "id": "pendo-button-7c70133f",
+                "cls": "bb-button _pendo-button-primaryButton _pendo-button",
+                "title": null,
+                "attrs": {},
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "",
+                    "cls": "pendo-mock-flexbox-element",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 0,
+                    "childIndex": 0,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "",
+                        "cls": "pendo-mock-flexbox-row",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 0,
+                        "childIndex": 0,
+                        "parentElem": {
+                            "tag": "DIV",
+                            "id": "pendo-row-25aee850",
+                            "cls": "_pendo-row",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 5,
+                            "childIndex": 5,
+                            "parentElem": {
+                                "tag": "DIV",
+                                "id": "pendo-guide-container",
+                                "cls": "_pendo-step-container-styles",
+                                "title": null,
+                                "attrs": {
+                                    "tabindex": "-1"
+                                },
+                                "myIndex": 0,
+                                "childIndex": 0,
+                                "parentElem": {
+                                    "tag": "DIV",
+                                    "id": "pendo-g-4p2hryyKx3CQ0lbq44di9874UC4",
+                                    "cls": "_pendo-step-container-size",
+                                    "title": null,
+                                    "attrs": {},
+                                    "myIndex": 2,
+                                    "childIndex": 2,
+                                    "parentElem": {
+                                        "tag": "DIV",
+                                        "id": "pendo-base",
+                                        "cls": "_pendo-step-container _pendo-guide-tt_ _pendo-guide-walkthrough_",
+                                        "title": null,
+                                        "attrs": {},
+                                        "myIndex": 260,
+                                        "childIndex": 118,
+                                        "parentElem": {
+                                            "tag": "BODY",
+                                            "id": "main",
+                                            "cls": "dark-app-theme",
+                                            "title": null,
+                                            "attrs": {},
+                                            "myIndex": 2,
+                                            "childIndex": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI",
+        "bytes": 1392
+    },
+    {
+        "type": "focus",
+        "browser_time": 1651518212343,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "DIV",
+                "id": "",
+                "cls": "board-with-keyboard-navigation-component",
+                "title": null,
+                "attrs": {
+                    "tabindex": "-1"
+                },
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "current-board-component-id",
+                    "cls": "current-board-component",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 0,
+                    "childIndex": 0,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "first-level-content",
+                        "cls": "first-level-content react-board",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 5,
+                        "childIndex": 2,
+                        "parentElem": {
+                            "tag": "DIV",
+                            "id": "first-level-content-wrapper",
+                            "cls": "first-level-content-wrapper first-level-control-pinned",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 5,
+                            "childIndex": 2,
+                            "parentElem": {
+                                "tag": "DIV",
+                                "id": "first-level",
+                                "cls": "first-level",
+                                "title": null,
+                                "attrs": {},
+                                "myIndex": 3,
+                                "childIndex": 1,
+                                "parentElem": {
+                                    "tag": "DIV",
+                                    "id": "application-layers",
+                                    "cls": "application-layers",
+                                    "title": null,
+                                    "attrs": {},
+                                    "myIndex": 7,
+                                    "childIndex": 2,
+                                    "parentElem": {
+                                        "tag": "DIV",
+                                        "id": "application",
+                                        "cls": "application   with-top-reminder",
+                                        "title": null,
+                                        "attrs": {},
+                                        "myIndex": 36,
+                                        "childIndex": 17,
+                                        "parentElem": {
+                                            "tag": "BODY",
+                                            "id": "main",
+                                            "cls": "dark-app-theme",
+                                            "title": null,
+                                            "attrs": {},
+                                            "myIndex": 2,
+                                            "childIndex": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI",
+        "bytes": 1375
+    },
+    {
+        "type": "click",
+        "browser_time": 1651518212412,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "BUTTON",
+                "id": "pendo-button-7c70133f",
+                "cls": "bb-button _pendo-button-primaryButton _pendo-button",
+                "title": null,
+                "attrs": {},
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "",
+                    "cls": "pendo-mock-flexbox-element",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 0,
+                    "childIndex": 0,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "",
+                        "cls": "pendo-mock-flexbox-row",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 0,
+                        "childIndex": 0,
+                        "parentElem": {
+                            "tag": "DIV",
+                            "id": "pendo-row-25aee850",
+                            "cls": "_pendo-row",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 5,
+                            "childIndex": 5,
+                            "parentElem": {
+                                "tag": "DIV",
+                                "id": "pendo-guide-container",
+                                "cls": "_pendo-step-container-styles",
+                                "title": null,
+                                "attrs": {
+                                    "tabindex": "-1"
+                                },
+                                "myIndex": 0,
+                                "childIndex": 0,
+                                "parentElem": {
+                                    "tag": "DIV",
+                                    "id": "pendo-g-4p2hryyKx3CQ0lbq44di9874UC4",
+                                    "cls": "_pendo-step-container-size",
+                                    "title": null,
+                                    "attrs": {},
+                                    "myIndex": 2,
+                                    "childIndex": 2,
+                                    "parentElem": {
+                                        "tag": "DIV",
+                                        "id": "pendo-base",
+                                        "cls": "_pendo-step-container _pendo-guide-tt_ _pendo-guide-walkthrough_",
+                                        "title": null,
+                                        "attrs": {},
+                                        "myIndex": 260,
+                                        "childIndex": 118,
+                                        "parentElem": {
+                                            "tag": "BODY",
+                                            "id": "main",
+                                            "cls": "dark-app-theme",
+                                            "title": null,
+                                            "attrs": {},
+                                            "myIndex": 2,
+                                            "childIndex": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "flags": [
+                    "left"
+                ]
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI",
+        "bytes": 1409
+    },
+    {
+        "type": "focus",
+        "browser_time": 1651518212505,
+        "visitor_id": "30029383",
+        "account_id": "11981132",
+        "url": "https://monday308674.monday.com/boards/2599766372/views/59139706",
+        "props": {
+            "target": {
+                "tag": "DIV",
+                "id": "pendo-guide-container",
+                "cls": "_pendo-step-container-styles",
+                "title": null,
+                "attrs": {
+                    "tabindex": "-1"
+                },
+                "myIndex": 0,
+                "childIndex": 0,
+                "parentElem": {
+                    "tag": "DIV",
+                    "id": "pendo-g-oaW-YoUWPeanEAGHjxuqOIWIas0",
+                    "cls": "_pendo-step-container-size",
+                    "title": null,
+                    "attrs": {},
+                    "myIndex": 2,
+                    "childIndex": 2,
+                    "parentElem": {
+                        "tag": "DIV",
+                        "id": "pendo-base",
+                        "cls": "_pendo-step-container _pendo-guide-tt_",
+                        "title": null,
+                        "attrs": {},
+                        "myIndex": 260,
+                        "childIndex": 118,
+                        "parentElem": {
+                            "tag": "BODY",
+                            "id": "main",
+                            "cls": "dark-app-theme",
+                            "title": null,
+                            "attrs": {},
+                            "myIndex": 2,
+                            "childIndex": 1
+                        }
+                    }
+                }
+            }
+        },
+        "tabId": "EePmKWitxzKOKfRe",
+        "frameId": "xK6KvYbXNFIbfOL7",
+        "sessionId": "azuqVF9mZs5XJRPI",
+        "bytes": 835
+    }
+]

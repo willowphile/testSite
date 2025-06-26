@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+
+    <title>TS Training Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="salt.ico" />
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="grimaceBanner.svg">
+    </div>
+
+    <div class="row">
+        <div class="side">
+            <button class="button" id="loginBigBtn"
+                onclick="document.getElementById('identifyModal').style.display='block'" style="width:auto;">CLICK THIS
+                GIANT PINK BUTTON TO IDENTIFY YOURSELF</button>
+            <p>You are identified visitor:
+                <span class="identifiedVisitor"></span>
+            </p>
+            <hr>
+
+            <p>Here is some random text to capture with event properties</p>
+            <script>
+
+                // make an array of random strings to choose from
+                var r_text = new Array();
+                r_text[0] = "Just say not to pineapple pizza";
+                r_text[1] = "Taco Bell is actual garbage";
+                r_text[2] = "Salt is a basic food group for support teams";
+                r_text[3] = "Richie wants to know your favorite Mulan rice dish";
+
+                // use an rng to pick and display one
+                var i = Math.floor(r_text.length * Math.random());
+                document.write(r_text[i]);
+
+            </script>
+            <p>
+                <span id="datetime"></span>
+            </p>
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = dt.toLocaleString();
+            </script>
+        </div>
+        <div class="main">
+
+            <div id="identifyModal" class="modal">
+
+                <div class="modal-content animate">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('identifyModal').style.display='none'" class="close"
+                            title="Close Modal">&times;</span>
+                    </div>
+
+                    <div class="container">
+                        <label for="visitor"><b>Enter your visitor ID</b></label>
+                        <input type="text" id="visitor"
+                            placeholder="Don't start it with 'test' unless you want to be excluded" name="visitor" required>
+                        <br>
+                        <label for="account"><b>Enter your account ID</b></label>
+                        <input type="text" id="account" placeholder="This is optional soooo ¯\_(ツ)_/¯" name="account">
+
+                        <label for="random"><b>Enter something completely arbitrary</b></label>
+                        <input type="text" id="random" placeholder="The metadata field is literally called 'random'"
+                            name="random">
+
+                        <button class="identifybtn" onclick="identifyUser()">Identify Me!</button>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function identifyUser() {
+                    // grab the values from the inputs
+                    var identifiedVisitor = document.getElementById("visitor").value;
+                    var identifiedAccount = document.getElementById("account").value;
+                    var identifiedRandomness = document.getElementById("random").value;
+
+                    //pass them into the initialize statement
+                    pendo.initialize({
+                        visitor: {
+                            id: identifiedVisitor,
+                            language: "en_US",
+                            random: identifiedRandomness
+                        },
+
+                        account: {
+                            id: identifiedAccount
+                        }
+                    });
+                    console.log("Visitor identified as " + identifiedVisitor + ". try running a validateInstall() for the rest");
+                    // displays the visitor ID on the page below the button
+                    document.querySelector('.identifiedVisitor').textContent = identifiedVisitor;
+                    // closes the modal
+                    document.getElementById('identifyModal').style.display = 'none';
+                }
+            </script>
+            <script>
+                // Get the modal
+                var modal = document.getElementById('identifyModal');
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+
+            <h2>jzb testing</h2>
+
+
+            <h2>Buttons!</h2>
+            <p>There are three levels of divs here. How will the clicks behave?</p>
+            <div class=layer1>
+                <button onclick="location.href = 'https://www.bungie.com';" id="myButton" class="button green">External
+                    Link</button>
+                <div class=layer2>
+                    <button onclick="location.href = 'Darkness.html';" id="myButton" class="button arc">Same
+                        site</button>
+                    <div class=layer3>
+                        <button onclick="location.href = '#pageAnchor';" id="myButton" class="button void">Page
+                            Anchor</button>
+                    </div>
+                    <br>
+                </div>
+                <br>
+            </div>
+            <hr>
+            <h2>Dropdowns!</h2>
+            <p>How can I capture the value in the dropdown?</p>
+            <div class="box">
+                <select id="select1">
+                    <option value="start" disabled>Choose your fighter</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="hunter">Hunter</option>
+                    <option value="titan">Titan</option>
+                </select>
+            </div>
+            <br>
+            <button onclick="getOption()" class="button void"> Check option </button>
+
+            <p> The value is:
+                <span class="output"></span>
+            </p>
+
+            <script type="text/javascript">
+                function getOption() {
+                    selectElement = document.querySelector('#select1');
+                    output = selectElement.value;
+                    document.querySelector('.output').textContent = output;
+                }
+            </script>
+
+            <hr>
+            <div>
+                <h2>updateOptions and identify</h2>
+
+                Enter a new random value: <input type="text" id="field1" value="oh hai!"
+                    style='border:solid 1px black;height: 40px;vertical-align: middle;'>
+                <button onclick="updateRandom()" class="button arc"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>update!</button>
+                <button onclick="identifyRandom()" class="button void"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>identify!</button>
+
+                <script type="text/javascript">
+                    function updateRandom() {
+                        var inputVal = document.getElementById("field1").value;
+                        pendo.updateOptions({
+                            visitor: {
+                                random: inputVal
+                            }
+                        });
+                        console.log("Visitor-level agent metadata field 'random' changed to " + inputVal + ". try running a validateInstall()");
+                    }
+                </script>
+
+                <script type="text/javascript">
+                    function identifyRandom() {
+                        var inputVal = document.getElementById("field1").value;
+                        pendo.identify({
+                            visitor: {
+                                random: inputVal
+                            }
+                        });
+                        console.log("Visitor-level agent metadata field 'random' changed to " + inputVal + ". try running a validateInstall()");
+                    }
+                </script>
+                <br>
+                Enter a new visitorId: <input type="text" id="visitorField1" value="testVisitor1"
+                    style='border:solid 1px black;height: 40px;vertical-align: middle;'>
+
+                <button onclick="identifyNewVisitor()" class="button void"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>identify!</button>
+                <script type="text/javascript">
+                    function identifyNewVisitor() {
+                        pendo.identify({
+                            visitor: {
+                                id: document.getElementById("visitorField1").value,
+                                random: "autoGenerated"
+                            }
+                        });
+                    }
+                </script>
+
+            </div>
+
+            <hr>
+            <br>
+            <div>
+                <h2>URL Shenanigans</h2>
+
+                Enter the name you want this page to be: <input type="text" id="setUrlField" value="boringWebPageName"
+                    style='border:solid 1px black;height: 40px;vertical-align: middle;'>
+                <button onclick="updateUrl()" class="button arc" id="updateUrlButton"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>update!</button>
+
+                <script type="text/javascript">
+                    function updateUrl() {
+                        var urlVal = document.getElementById("setUrlField").value;
+                        pendo.location.setUrl('http://your.webpage.com/' + urlVal);
+                        console.log("URL has been updated to " + urlVal + ". try running a normalizedUrl command");
+                    }
+                </script>
+            </div>
+            <p id="pageAnchor" style=font-size:8px;float:right>This is where that page anchor button goes.</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

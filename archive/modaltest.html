@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+    <script>
+        pendo.initialize({
+            visitor: {
+                id: user_id,
+                email: user_email,
+                full_name: user_full_name,
+                language: "en_GB",
+                random: user_random_data
+            },
+
+            account: {
+                id: user_account_id,
+                type: user_account_type
+            },
+
+            parentAccount: {
+                id: user_parent_account_id,
+                name: user_parent_account_name,
+                parentAccountOnly: 'yes'
+            },
+            excludeAllText: true
+        });
+    </script>
+
+    <title>Alisyn's Training Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #094CFA;
+        }
+
+        .layer1 {
+            background-color: #e6e6e6;
+            display: block;
+            width: 500px;
+        }
+
+        .layer2 {
+            background-color: #d5d5d5;
+            display: block;
+            width: 450px;
+        }
+
+        .layer3 {
+            background-color: #c4c4c4;
+            display: block;
+            width: 400px;
+        }
+    </style>
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am a website</p>
+    </div>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="warlock.html">Warlock</a>
+        <a href="hunter.html">Hunter</a>
+        <a href="titan.html">Crayon-eater</a>
+        <div class="dropdown">
+            <button class="dropbtn">Special Installs</button>
+            <div class="dropdown-content">
+                <a href="anonymous.html">Anonymous</a>
+                <a href="customInitializes.html">Custom Initializes</a>
+                <a href="gtm.html">GTM</a>
+                <a href="GTMwVars.html">GTM with Variables</a>
+                <a href="locationApi.html">Location API</a>
+                <a href="segment.html">Segment</a>
+            </div>
+        </div>
+        <a href="SinglePageSite/index.html" class="right">SinglePage</a>
+        <a href="cats.html" class="right">Cats</a>
+        <a href="Darkness.html" class="right">Dark</a>
+        <a href="training-eu.html" class="right">EU</a>
+        <a href="training.html" class="right">Training</a>
+    </div>
+
+    <div class="row">
+        <div class="side">
+            <h2>Stuff</h2>
+            <img src="img/rainbowEmblem.png" width="300"><br>
+            <img src="img/catEmblem.png" width="300"><br>
+            <img src="img/heartEmblem.png" width="300"><br>
+            <br>
+            <p>
+                This is randomized text.
+                -
+                <SCRIPT LANGUAGE="JAVASCRIPT">
+                    var r_text = new Array();
+                    r_text[0] = "Lorem ipsum nightstalker fatebringer.";
+                    r_text[1] = "Lorem ipsum witherhoard ikelos.";
+                    r_text[2] = "Lorem ipsum stasis thunderlord.";
+
+                    var i = Math.floor(r_text.length * Math.random());
+
+                    document.write(r_text[i]);
+
+                </script>
+            </p>
+            <p>
+                The current time is:
+                <span id="datetime"></span>
+            </p>
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = dt.toLocaleString();
+            </script>
+            <a href="#buttonAnchor">Click Attribution</a><br>
+            <a href="#dropdownAnchor">Click Event Properties</a><br>
+            <a href="#modalsAnchor">Overlays and Modals!</a><br>
+            <a href="#identifyAnchor">updateOptions and identify</a><br>
+            <a href="#locationAPIAnchor">URL Shenanigans!</a><br>
+            <a href="#focusAnchor">The One Ring!</a><br>
+            <a href="#trackAnchor">Track Events!</a><br>
+            <a href="#getMetadataAnchor">Get Metadata!</a><br>
+        </div>
+        <div class="main"><button id="modalOpenBtn" class="btn void">Open Modal</button>
+            <!-- The Modal -->
+            <div id="myAggroModal" class="modal">
+                <!-- Modal content -->
+                <div id="modalBox" class="modal-content">
+                    <span class="close">&times;</span>
+                    <p id="modalText">This modal is very needy and steals focus</p>
+                    <input id="modalVariableText">Click below to see how...</p>
+                    <button id="engageAggro" class="btn void">Engage Aggro</button>
+                </div>
+            </div>
+
+
+            <script>
+                // Get the modal
+                var aggroModal = document.getElementById("myAggroModal");
+                // Get the button to open
+                var modalOpenBtn = document.getElementById("modalOpenBtn");
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // Get the aggro button and add listeners
+                var engageAggro = document.getElementById("engageAggro");
+
+
+                // When the user clicks the button, open the modal 
+                modalOpenBtn.onclick = function () {
+                    aggroModal.style.display = "block";
+                }
+
+                engageAggro.onclick = function () {
+                    document.getElementById("modalVariableText").value = "I have the focus now. Try using the designer.";
+                    console.log("engageAggro clicked")
+                }
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    aggroModal.style.display = "none";
+                }
+
+                document.addEventListener("click keydown keypress", function (event) {
+                    console.log('listener triggered')
+                    // If user clicks inside the element, do nothing
+                    if (event.target.closest("#modalBox")) return
+                    // If user clicks outside the element, hide it!
+                    modalVariableText.focus();
+                    console.log('modalVariableText focused');
+                })
+            </script>
+        </div>
+    </div>
+    <div class="footer">
+        <h2>Helpful Links</h2>
+        <a href="https://www.bungie.com">Bungo</a> |
+        <a href="https://www.d2checklist.com">D2 Checklist</a> |
+        <a href="https://www.destinyitemmanager.com">DIM</a>
+    </div>
+</body>
+
+</html>

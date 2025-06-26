@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- This was inspired by https://pendo-io.atlassian.net/browse/EE-86 -->
+
+<head>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        (function (p, e, n, d, o) {
+            var v, w, x, y, z;
+            o = p[d] = p[d] || {};
+            o._q = [];
+            v = ["initialize", "identify", "updateOptions", "pageLoad", "stopSendingEvents"];
+            for (w = 0, x = v.length; w < x; ++w)
+                (function (m) {
+                    o[m] =
+                        o[m] ||
+                        function () {
+                            o._q[m === v[0] ? "unshift" : "push"]([m].concat([].slice.call(arguments, 0)));
+                        };
+                })(v[w]);
+            y = e.createElement(n);
+            y.async = !0;
+            y.src = "https://cdn.pendo.io/agent/static/a93e68a6-46fd-443a-699f-aa31985c066d/pendo.js";
+            z = e.getElementsByTagName(n)[0];
+            z.parentNode.insertBefore(y, z);
+        })(window, document, "script", "pendo")
+    </script>
+
+    <title>Alisyn's Training Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am a website</p>
+    </div>
+
+  <!--Navigation bar-->
+  <div id="nav-placeholder">
+
+  </div>
+
+  <script>
+    $(function () {
+      $("#nav-placeholder").load("navbar.html");
+    });
+  </script>
+  <!--end of Navigation bar-->
+
+    <div class="row">
+        <div class="main">
+            <div>
+                <button onclick="dummyClick()" class="btn arc" id="dummyClick"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
+                    for a dummy event!</button>
+
+                <script type="text/javascript">
+                    function dummyClick() {
+                        console.log("yeah, it's clicked");
+                    }
+                </script>
+            </div>
+            <div>
+                <button onclick="getVisitorId()" class="btn arc" id="getVisitorId"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>getVisitorId</button>
+
+                <p id="getVisitorIdOutput"></p>
+
+                <script type="text/javascript">
+                    function getVisitorId() {
+                        document.getElementById("getVisitorIdOutput").innerHTML = pendo.getVisitorId()
+                    }
+                </script>
+            </div>
+            <div>
+                <h2>Random script testing</h2>
+                <!-- put your script here and in the script tags below so you know what you're actually testing  -->
+                <xmp style='font-size: 10px;'>
+                </xmp>
+
+                <!-- put your script here, and don't forget to paste the code in the xmp tags above, too -->
+                <div class="box">
+                    <select id="selectVisitor">
+                        <option value="start" disabled>Choose a visitor</option>
+                        <option value="Ikora">Ikora</option>
+                        <option value="LadyEfrideet">LadyEfrideet</option>
+                        <option value="Saint-14">Saint-14</option>
+                    </select>
+                </div>
+
+                <div class="box">
+                    <select id="selectType">
+                        <option value="start" disabled>Choose a type</option>
+                        <option value="warlock">Warlock</option>
+                        <option value="hunter">Hunter</option>
+                        <option value="titan">Titan</option>
+                    </select>
+                </div>
+                <br>
+                <button onclick="randoScript()" class="btn void"> Initialize! </button>
+
+
+                <script type="text/javascript">
+                    function randoScript() {
+                        var userId = document.getElementById("selectVisitor").value;
+                        var userType = document.getElementById("selectType").value;
+
+                        if (userType === "hunter") {
+                            console.log("Id: ", userId, "Type: ", userType);
+                            pendo.initialize({
+                                visitor: {
+                                    id: userId,
+                                    type: userType
+                                }
+                            });
+                        } else {
+                            console.log('visitor not a hunter. pendo not initialized.');
+                        }
+
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

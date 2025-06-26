@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            pendo.initialize({
+                //excludeAllText: true,
+                //DisableGuides: True,
+                visitor: {
+                    id: user_id,   // Required if user is logged in
+                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name: user_full_name,// Recommended if using Pendo Feedback
+                    language: "en_GB",
+                    random: user_random_data
+                },
+
+                account: {
+                    id: user_account_id, // Highly recommended
+                    type: user_account_type// Optional
+                },
+
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+    <div class="header">
+        <img class="headerIcon" src="img/7513466.png" width="20"><br><br>
+        <h1>Hello</h1>
+        <p>I am a website</p>
+    </div>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navbar.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+    <div class="row">
+        <div class="side">
+            <h2>Stuff</h2>
+            <img src="img/rainbowEmblem.png" width="300"><br>
+            <img src="img/catEmblem.png" width="300"><br>
+            <img src="img/heartEmblem.png" width="300"><br>
+            <p>Lorem ipsum nightstalker fatebringer.</p>
+            <div>
+                <p>
+                    The current time is:
+                    <span id="datetime" custom="isJames"></span>
+                </p>
+                <script>
+                    function james() {
+                        window.setInterval(function setDate() {
+                            var dt = new Date();
+                            document.getElementById("datetime").innerHTML = dt.toLocaleString();
+                            document.getElementById('datetime').setAttribute('custom', 'notJames');
+                        }, 1000);
+                    }
+                    setTimeout(james, 5000);
+                </script>
+            </div>
+        </div>
+        <div class="main">
+            <div>
+                <form id="form1">
+                    <h4>Form</h4>
+                    <label for="name">Name:</label>
+                    <input class="textbox" type="text" name="name"><br><br>
+                    <label for="gender">Gender:</label>
+                    <input type="radio" name="gender" id="fluid" value="fluid">
+                    <label for="fluid">Fluid</label>
+                    <input type="radio" name="gender" id="construct" value="construct">
+                    <label for="construct">Is a Construct</label> <br><br>
+                    <label for="start">Start date:</label>
+                    <input type="date" class="datePicker" id="start" name="startDate" value="2023-11-01"
+                        min="2023-01-01" max="2024-12-31" />
+                    <br><br>
+                    <label for="message">Message:</label><br>
+                    <textarea class="textbox" name="message" id="message" cols="30" rows="4"></textarea><br><br>
+                    <input type="checkbox" name="newsletter" id="newsletter">
+                    <label for="newsletter">Subscribe?</label><br><br>
+                    <!-- <input class="buttonRainbow" type="submit" value="Submit"> -->
+                </form>
+            </div>
+            <div>
+                <form id="form2" class="hidden">
+                    <h4>Form</h4>
+                    <label for="name">Name:</label>
+                    <input class="textbox" type="text" name="name"><br><br>
+                    <label for="gender">Gender:</label>
+                    <input type="radio" name="gender" id="fluid" value="fluid">
+                    <label for="fluid">Fluid</label>
+                    <input type="radio" name="gender" id="construct" value="construct">
+                    <label for="construct">Is a Construct</label> <br><br>
+                    <label for="start">Start date:</label>
+                    <input type="date" class="datePicker" id="start" name="startDate" value="2023-11-01"
+                        min="2023-01-01" max="2024-12-31" />
+                    <br><br>
+                    <label for="message">Message:</label><br>
+                    <textarea class="textbox" name="message" id="message" cols="30" rows="4"></textarea><br><br>
+                    <input type="checkbox" name="newsletter" id="newsletter">
+                    <label for="newsletter">Subscribe?</label><br><br>
+                    <!-- <input class="buttonRainbow" type="submit" value="Submit"> -->
+                </form>
+            </div>
+            <div>
+                <button onclick="showHide()" class="buttonRainbow" id="showHideButton"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
+                    to switch forms!</button>
+
+                <script type="text/javascript">
+                    function showHide() {
+                        var element = document.getElementById("form1");
+                        element.classList.toggle("hidden");
+
+                        var element2 = document.getElementById("form2");
+                        element2.classList.toggle("hidden");                    
+                    }
+                </script>
+            </div>
+            <br>
+            <div>
+                <button onclick="reloadPage()" class="buttonRainbow" id="reloadPage"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>reload
+                    page</button>
+
+                <script type="text/javascript">
+                    function reloadPage() {
+                        window.location.reload();
+                    }
+                </script>
+            </div>
+            <br>
+
+        </div>
+    </div>
+    <div class="footer">
+        <h2>I want to go to there</h2>
+        <a href="https://www.bungie.com">Bungo</a> |
+        <a href="https://www.d2checklist.com">D2 Checklist</a> |
+        <a href="https://www.destinyitemmanager.com">DIM</a>
+    </div>
+
+</body>
+
+</html>

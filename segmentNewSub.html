@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+    <script>
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = dt.toLocaleString();
+    </script>
+    <script>
+        !function () {
+            var i = "analytics", analytics = window[i] = window[i] || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+                analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "screen", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware", "register"]; analytics.factory = function (e) { return function () { if (window[i].initialized) return window[i][e].apply(window[i], arguments); var n = Array.prototype.slice.call(arguments); if (["track", "screen", "alias", "group", "page", "identify"].indexOf(e) > -1) { var c = document.querySelector("link[rel='canonical']"); n.push({ __t: "bpc", c: c && c.getAttribute("href") || void 0, p: location.pathname, u: location.href, s: location.search, t: document.title, r: document.referrer }) } n.unshift(e); analytics.push(n); return analytics } }; for (var n = 0; n < analytics.methods.length; n++) { var key = analytics.methods[n]; analytics[key] = analytics.factory(key) } analytics.load = function (key, n) { var t = document.createElement("script"); t.type = "text/javascript"; t.async = !0; t.setAttribute("data-global-segment-analytics-key", i); t.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js"; var r = document.getElementsByTagName("script")[0]; r.parentNode.insertBefore(t, r); analytics._loadOptions = n }; analytics._writeKey = "FCpQhEsa5trZfhA9FwBBAnp6Dr6OIAxL";; analytics.SNIPPET_VERSION = "5.2.0";
+                analytics.load("FCpQhEsa5trZfhA9FwBBAnp6Dr6OIAxL");
+                analytics.page();
+                analytics.identify("segmentVisitor", {
+                    name: "segmentVisitor",
+                    random: "oh heyyyyyy",
+                    timestamp: dt
+                });
+/*                 analytics.group('segmentAccount', {
+                    name: "segmentAccount",
+                    thisIsOnlyASegmentMetadataField: "oh hai"
+                }); */
+            }
+        }();
+    </script>
+
+    <title>Segment.io/.com/whatever</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am a website</p>
+        <p>I go with sub <a style="color: aliceblue" href="https://app.pendo.io/super/subs/4871676360982528">4871676360982528</a></p>
+    </div>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navbar.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+    <div class="row">
+        <div class="side">
+            <h2>Stuff</h2>
+            <img src="img/rainbowEmblem.png" width="300"><br>
+            <img src="img/catEmblem.png" width="300"><br>
+            <img src="img/heartEmblem.png" width="300"><br>
+            <br>
+            <SCRIPT LANGUAGE="JAVASCRIPT">
+
+                var r_text = new Array();
+                r_text[0] = "Lorem ipsum nightstalker fatebringer.";
+                r_text[1] = "Lorem ipsum witherhoard ikelos.";
+                r_text[2] = "Lorem ipsum stasis thunderlord.";
+
+                var i = Math.floor(r_text.length * Math.random());
+
+                document.write(r_text[i]);
+
+            </script>
+            <p>
+                <span id="datetime"></span>
+            </p>
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = dt.toLocaleString();
+            </script>
+        </div>
+        <div class="main">
+            <div>
+                <h2>Segment.io Visitor Testing</h2>
+
+                <form>
+                    <p>
+                        <label for="visitorField1">Enter a new visitorId: </label>
+                        <input type="text" id="visitorField1" value="segmentTestArthur"
+                            style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+                    </p>
+                    <p>
+                        <label for="visitorField2">What is your name: </label>
+                        <input type="text" id="visitorField2" value="King Arthur of the Britons"
+                            style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+                    </p>
+                    <p>
+                        <label for="toSeekTheGrail">What is your quest: </label>
+                        <input type="text" id="toSeekTheGrail" value="To seek the Grail"
+                            style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+                    </p>
+                    <p>
+                        <label for="africanOrEuropean">What is the airspeed velocity of an unladen swallow: </label>
+                        <input type="text" id="africanOrEuropean" value="what? i don't know that"
+                            style='border:solid 1px black;height: 30px;width: 300px;vertical-align: middle;font-family: myCustomFont;'>
+                    </p>
+                </form>
+                <br>
+                <button onclick="identifyNewVisitor()" class="btn void"
+                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>identify!</button>
+                <script type="text/javascript">
+                    function identifyNewVisitor() {
+                        analytics.identify(document.getElementById("visitorField1").value, {
+                            name: document.getElementById("visitorField2").value,
+                            quest: document.getElementById("toSeekTheGrail").value,
+                            airspeedVelocity: document.getElementById("africanOrEuropean").value,
+                        });
+                    }
+                </script>
+
+            </div>
+
+
+</body>
+
+</html>

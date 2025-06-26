@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <!--     
+            <script src="https://cdn.pendo.io/agent/releases/2.117.0/pendo.xhr.js" integrity="sha384-pXACrHMY7B+cLM82XTJhyFFG7Th7bRzmPXKVLsiG2rarBVH+5R/S1QX8g+FBqnr2" crossorigin="anonymous"></script>
+     -->
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+
+    <script>
+        pendo.initialize({
+            visitor: {
+                id: user_id,   // Required if user is logged in
+                email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                full_name: user_full_name,// Recommended if using Pendo Feedback
+                language: "en_GB",
+                random: user_random_data
+            },
+
+            account: {
+                id: user_account_id, // Highly recommended
+                type: user_account_type// Optional
+            },
+
+            parentAccount: {
+                id: user_parent_account_id,
+                name: user_parent_account_name,
+                parentAccountOnly: 'yes'
+            }
+        });
+    </script>
+
+    <title>Alisyn's Training Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am a website</p>
+    </div>
+    <div class="row">
+        <div class="side">
+            <h2>This is the sidebar</h2>
+        </div>
+        <div class="main">
+            <div class=someOtherStuff>
+                <p>These are some words in the first div</p>
+            </div>
+            <hr>
+            <p>These are some words outside of the divs</p>
+            <hr>
+            <div class=someOtherStuff>
+                <p>These are some words in the second div</p>
+            </div>
+            <hr>
+            <div>
+                <p>This button is in the third div</p>
+                <button onclick="updateRandom()" class="btn arc">update!</button>
+                <script type="text/javascript">
+                    function updateRandom() {
+                        pendo.updateOptions({
+                            visitor: {
+                                random: "newRandomValue"
+                            }
+                        });
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

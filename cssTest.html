@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            pendo.initialize({
+                visitor: {
+                    id: "cssTest",
+                    language: "en_GB"
+                },
+                account: {
+                    id: "cssTest"
+                },
+                parentAccount: {
+                    id: "cssTest"
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="test.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+<div style='position: absolute;top: 50%;left: 50%;margin-top: -50px;margin-left: -50px;'>
+    <div>
+        <img src="img/7513466.png" width="20"><br><br>
+        <h1>Hello</h1>
+        <p>I am a stripped-down website</p>
+    </div>
+
+    <div>
+        <button onclick="dummyClick()" id="dummyClick">I am a button. Click me for a dummy event.</button>
+
+        <script type="text/javascript">
+            function dummyClick() {
+                console.log("yeah, it's clicked");
+            }
+        </script>
+    </div>
+
+    <div>
+        <button onclick="getVisitorId()" class="buttonRainbow" id="getVisitorId"
+            style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>I am a button with style. Click me to getVisitorId</button>
+
+        <p id="getVisitorIdOutput"></p>
+
+        <script type="text/javascript">
+            function getVisitorId() {
+                document.getElementById("getVisitorIdOutput").innerHTML = pendo.getVisitorId()
+            }
+        </script>
+    </div>
+
+    <div>
+        <a href="/index.html">Go home</a> 
+    </div>
+
+</div>
+</body>
+
+</html>

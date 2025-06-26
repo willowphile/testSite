@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        function annotateUrl() {
+            var toDrop = ['titan'];
+            var toAdd = { wellActually: 'CRAYONS' };
+            return {
+                include: toAdd
+            };
+        };
+    </script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            pendo.initialize({
+                //excludeAllText: true,
+                //DisableGuides: True,
+                visitor: {
+                    id: user_id,   // Required if user is logged in
+                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name: user_full_name,// Recommended if using Pendo Feedback
+                    language: "en_GB",
+                    random: user_random_data
+                    //boolean:      user_boolean
+                    //date1:        user_date1
+                    //date2:        user_date2
+                },
+
+                account: {
+                    id: user_account_id, // Highly recommended
+                    type: user_account_type// Optional
+                },
+
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                },
+                annotateUrl: annotateUrl
+            });
+        })('65f4b006-32ee-49da-7e10-42c15b5a6a06');
+    </script>
+    <!--
+<script id = "ze-snippet" src = "https://static.zdassets.com/ekr/snippet.js?key=2e7dd840-8a9a-484f-8af0-8802bc2d3d2b"> </script>
+-->
+    <title>Alisyn's Playground</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am the top frame</p>
+        <p>65f4b006-32ee-49da-7e10-42c15b5a6a06</p>
+        <div>
+            <button onclick="dummyClick()" class="btn arc" id="dummyClick"
+                style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
+                for a dummy event!</button>
+
+            <script type="text/javascript">
+                function dummyClick() {
+                    console.log("yeah, it's clicked");
+                }
+            </script>
+        </div>
+        <div>
+            <button onclick="getVisitorId()" class="btn arc" id="getVisitorId"
+                style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>getVisitorId</button>
+
+            <p id="getVisitorIdOutput"></p>
+
+            <script type="text/javascript">
+                function getVisitorId() {
+                    document.getElementById("getVisitorIdOutput").innerHTML = pendo.getVisitorId()
+                }
+            </script>
+        </div>
+    </div>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navbar.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+    <div class="row">
+        <div class="side">
+            <iframe src="iframeSide.html" height="100%" width="100%" title="iframe3"
+                style="border:1px solid black;"></iframe>
+        </div>
+        <div class="main" id="main">
+            <iframe src="iframe.html" height="400" width="100%" title="iframe1"
+                style="border:1px solid black;"></iframe>
+            <!--             
+            <iframe src="iframe2.html" height="400" width="100%" title="iframe2"
+                style="border:1px solid black;"></iframe> 
+            -->
+            <script>
+                window.addEventListener("DOMContentLoaded", function () {
+                    window.setTimeout(function () {
+                        var iframe = document.createElement("iframe")
+                        iframe.src = "iframe2.html"
+                        iframe.scrolling = true
+                        iframe.name = iframe.id = "delayedSameAPIKey"
+                        iframe.height = 400
+                        iframe.width = "100%"
+                        document.getElementById("main").appendChild(iframe)
+                    }, 5000) // wait 2 seconds after loading
+                })
+            </script>
+            <script>
+                window.addEventListener("DOMContentLoaded", function () {
+                    window.setTimeout(function () {
+                        var iframe = document.createElement("iframe")
+                        iframe.src = "cats.html"
+                        iframe.scrolling = true
+                        iframe.name = iframe.id = "delayedCats"
+                        iframe.height = 400
+                        iframe.width = "100%"
+                        document.getElementById("main").appendChild(iframe)
+                    }, 5000) // wait 2 seconds after loading
+                })
+            </script>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2>Helpful Links</h2>
+        <a href="https://www.bungie.com">Bungo</a> |
+        <a href="https://www.d2checklist.com">D2 Checklist</a> |
+        <a href="https://www.destinyitemmanager.com">DIM</a>
+    </div>
+</body>
+
+</html>

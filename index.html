@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="firstfile.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    function annotateUrl() {
+      var toDrop = ['titan'];
+      var toAdd = { wellActually: 'CRAYONS' };
+      return {
+        include: toAdd
+      };
+    };
+  </script>
+  <script>
+    (function (apiKey) {
+      (function (p, e, n, d, o) {
+        var v, w, x, y, z;
+        o = p[d] = p[d] || {};
+        o._q = [];
+        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+        for (w = 0, x = v.length; w < x; ++w)
+          (function (m) {
+            o[m] = o[m] || function () {
+              o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+            };
+          })(v[w]);
+        y = e.createElement(n);
+        y.async = !0;
+
+        y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+        z = e.getElementsByTagName(n)[0];
+        z.parentNode.insertBefore(y, z);
+      })(window, document, 'script', 'pendo');
+
+      // Call this whenever information about your visitors becomes available
+      // Please use Strings, Numbers, or Bools for value types.
+      pendo.initialize({
+        //excludeAllText: true,
+        //disableGuides: true,
+        visitor: {
+          id: user_id,   // Required if user is logged in
+          email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+          full_name: user_full_name,// Recommended if using Pendo Feedback
+          language: "en_GB",
+          random: user_random_data,
+          boolean: user_boolean,
+          ee326: "this shouldn't process",
+          newfieldtodelete: "casing will get you every time",
+          anothernewfieldtodelete: "casing will get you every time",
+          //date1:        user_date1
+          //date2:        user_date2
+        },
+
+        account: {
+          id: user_account_id, // Highly recommended
+          type: user_account_type// Optional
+        },
+
+        parentAccount: {
+          id: user_parent_account_id,
+          name: user_parent_account_name,
+          parentAccountOnly: 'yes'
+        },
+        annotateUrl: annotateUrl
+      });
+    })('a93e68a6-46fd-443a-699f-aa31985c066d');
+  </script>
+
+  <style>
+    select {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+  </style>
+  <!--   <script>
+    console.log = function () { }
+    console.group = function () { }
+  </script> -->
+
+
+  <title>Alisyn's Playground</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+
+
+<!--   <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' app.pendo.io pendo-io-static.storage.googleapis.com cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+  style-src 'unsafe-inline' app.pendo.io cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+  img-src cdn.pendo.io app.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+  connect-src app.pendo.io data.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+  frame-ancestors app.pendo.io;
+  frame-src app.pendo.io;
+  child-src app.pendo.io;" /> -->
+
+
+  <!--Pendo full csp
+    script-src 'unsafe-inline' 'unsafe-eval' app.pendo.io pendo-io-static.storage.googleapis.com cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+    style-src 'unsafe-inline' app.pendo.io cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+    img-src cdn.pendo.io app.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+    connect-src app.pendo.io data.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+    frame-ancestors app.pendo.io;
+    frame-src app.pendo.io;
+    child-src app.pendo.io;
+    -->
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>Oh hai</h1>
+    <p>I am Alisyn's test site</p>
+    <p id="visitorHeader"></p>
+    <script>
+      function visitorHeader() {
+        window.setInterval(function getvisitorHeader() {
+          var dt = new Date();
+          document.getElementById("visitorHeader").innerHTML = pendo.getVisitorId();
+        }, 1000);
+      }
+      setTimeout(visitorHeader, 5000);
+    </script>
+  </div>
+
+
+  <!--Navigation bar-->
+  <div id="nav-placeholder">
+
+  </div>
+
+  <script>
+    $(function () {
+      $("#nav-placeholder").load("navbar.html");
+    });
+  </script>
+  <!--end of Navigation bar-->
+
+  <div class="row">
+    <div class="side">
+      <h2>Stuff</h2>
+      <img src="img/rainbowEmblem.png" width="300" autofocus><br>
+      <img src="img/catEmblem.png" width="300"><br>
+      <img src="img/heartEmblem.png" width="300"><br>
+      <br>
+      <SCRIPT LANGUAGE="JAVASCRIPT">
+
+        var r_text = new Array();
+        r_text[0] = "Lorem ipsum nightstalker fatebringer.";
+        r_text[1] = "Lorem ipsum witherhoard ikelos.";
+        r_text[2] = "Lorem ipsum stasis thunderlord.";
+
+        var i = Math.floor(r_text.length * Math.random());
+
+        document.write(r_text[i]);
+
+      </script>
+    </div>
+    <div id="mainDiv" class="main" title="blah blah (AgathaHarkness)">
+      <div>
+        <button onclick="dummyClick()" class="buttonRainbow" id="dummyClick"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
+          for a dummy event!</button>
+        <script type="text/javascript">
+          function dummyClick() {
+            console.log("yeah, it's clicked");
+          }
+        </script>
+      </div>
+      <br>
+      <div>
+        <a href="sheBasic.html">
+          <button class="buttonRainbow" id="backToBasics"
+        style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Back to sheBasic</button>
+      </a>
+      </div>
+      <div id="imageDiv" style="display: flex; opacity: 0; margin-left: 20%;"><img id="dumpsterFire"
+          src="img/dumpsterFire.gif" width="500"><br></div>
+      <!-- <iframe src="cats.html" height="800" width="75%" title="Cats" style="border:1px solid black;"></iframe> -->
+      <!-- <iframe src="iframe.html" height="800" width="75%" title="iframe" style="border:1px solid black;"></iframe> -->
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>Helpful Links</h2>
+    <a href="https://willowphile.github.io/PendoTestSite/warlock.html">Github Warlock</a> |
+    <a href="https://www.bungie.com" target=”_blank”>Bungo</a> |
+    <a href="https://www.d2checklist.com">D2 Checklist</a> |
+    <a href="https://www.destinyitemmanager.com">DIM</a>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="firstfile.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    (function (apiKey) {
+      (function (p, e, n, d, o) {
+        var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = [];
+        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+          o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+        })(v[w]);
+        y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+        z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+      })(window, document, 'script', 'pendo');
+
+      pendo.initialize({
+        //DisableGuides: True,
+        visitor: {
+          id: user_id,
+          email: user_email,
+          full_name: user_full_name,
+          language: "en_GB",
+          random: user_random_data
+        },
+
+        account: {
+          id: user_account_id,
+          type: user_account_type
+        },
+
+        parentAccount: {
+          id: user_parent_account_id,
+          name: user_parent_account_name,
+          parentAccountOnly: 'yes'
+        }
+      });
+    })('87bea2e6-3d7c-47d8-76fd-2b2c05f0057a');
+  </script>
+  
+  <title>Alisyn's Playground</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+  <style>
+    /* Header/logo Title */
+    .header {
+      padding: 80px;
+      text-align: center;
+      background: black;
+      color: white;
+    }
+
+    /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+    .navbar {
+      overflow: hidden;
+      background-color: grey;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+    }
+
+    /* Change color on hover */
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Active/current link */
+    .navbar a.active {
+      background-color: #666;
+      color: white;
+    }
+  </style>
+  <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>Hello</h1>
+    <p>I am obviously a completely different website</p>
+  </div>
+
+  <!--Navigation bar-->
+  <div id="nav-placeholder">
+
+  </div>
+
+  <script>
+    $(function () {
+      $("#nav-placeholder").load("navbar.html");
+    });
+  </script>
+  <!--end of Navigation bar-->
+
+  <div class="row">
+    <div class="side">
+      <h2>Stuff</h2>
+      <img src="img/rainbowEmblem.png" width="300"><br>
+      <img src="img/catEmblem.png" width="300"><br>
+      <img src="img/heartEmblem.png" width="300"><br>
+      <br>
+      <SCRIPT LANGUAGE="JAVASCRIPT">
+
+        var r_text = new Array();
+        r_text[0] = "Lorem ipsum nightstalker fatebringer.";
+        r_text[1] = "Lorem ipsum witherhoard ikelos.";
+        r_text[2] = "Lorem ipsum stasis thunderlord.";
+
+        var i = Math.floor(r_text.length * Math.random());
+
+        document.write(r_text[i]);
+
+      </script>
+    </div>
+    <div class="main">
+      <div>
+        <button onclick="dummyClick()" class="btn arc" id="dummyClick"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
+          for a dummy event!</button>
+
+        <script type="text/javascript">
+          function dummyClick() {
+            console.log("yeah, it's clicked");
+          }
+        </script>
+      </div>
+      <div>
+        <button onclick="getVisitorId()" class="btn arc" id="getVisitorId"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>getVisitorId</button>
+
+        <p id="getVisitorIdOutput"></p>
+
+        <script type="text/javascript">
+          function getVisitorId() {
+            document.getElementById("getVisitorIdOutput").innerHTML = pendo.getVisitorId()
+          }
+        </script>
+      </div>
+      <hr>
+      <div>
+        <h2>Guides targeting multiple matching elements</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td><a class="maybeCats" href="/cats.html">first element</a></td>
+              <td>
+                <p>tooltip will target this one</p>
+                <p>by default, only clicks here will advance the guide</p>
+              </td>
+            </tr>
+            <tr>
+              <td><a class="maybeCats" href="/cats.html">second element</a></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td><a class="maybeCats" href="/cats.html">third element</a></td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+      <div>
+        <h2>Random script testing</h2>
+        <!-- put your script here and in the script tags below so you know what you're actually testing  -->
+        <xmp style='font-size: 10px;'>
+        </xmp>
+
+        <!-- put your script here, and don't forget to paste the code in the xmp tags above, too -->
+        Enter a visitorId: <input type="text" id="visitorField1" value="testVisitor1"
+          style='border:solid 1px black;height: 40px;vertical-align: middle;'><br>
+        Enter a random metadata value: <input type="text" id="randomMetadata" value="randomMetadata"
+          style='border:solid 1px black;height: 40px;vertical-align: middle;'><br>
+
+
+
+        <button onclick="initOnly()" class="btn void"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Initialize
+          with no visitor</button>
+
+        <script type="text/javascript">
+          function initOnly() {
+            pendo.initialize();
+          }
+        </script>
+
+        <button onclick="initWithVisitorOnly()" class="btn void"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Initialize
+          with visitor only</button>
+
+        <script type="text/javascript">
+          function initWithVisitorOnly() {
+            pendo.initialize({
+              visitor: {
+                id: document.getElementById("visitorField1").value
+              }
+            });
+          }
+        </script>
+
+        <button onclick="initAll()" class="btn void"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Initialize
+          with visitor & metadata</button>
+
+        <script type="text/javascript">
+          function initAll() {
+            pendo.initialize({
+              visitor: {
+                id: document.getElementById("visitorField1").value,
+                random: document.getElementById('randomMetadata').value
+              }
+            });
+          }
+        </script>
+        <br>
+        <button onclick="identifyNewVisitor()" class="btn void"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>identify!</button>
+        <script type="text/javascript">
+          function identifyNewVisitor() {
+            pendo.identify({
+              visitor: {
+                id: document.getElementById("visitorField1").value
+              }
+            });
+          }
+        </script>
+      </div>
+      <div>
+        <button onclick="changeButtonText()" class="btn void" id="changeButton"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>click me
+          please</button>
+        <script type="text/javascript">
+          function changeButtonText() {
+            document.getElementById("changeButton").innerText = "done been clicked"
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h2>Helpful Links</h2>
+    <a href="https://www.bungie.com">Bungo</a> |
+    <a href="https://www.d2checklist.com">D2 Checklist</a> |
+    <a href="https://www.destinyitemmanager.com">DIM</a>
+  </div>
+</body>
+
+</html>

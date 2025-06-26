@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="shadow.js" defer></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+
+            pendo.initialize({
+                visitor: {
+                    id: user_id,
+                    email: user_email,
+                    full_name: user_full_name,
+                    language: "en_GB",
+                    random: user_random_data
+                },
+                account: {
+                    id: user_account_id,
+                    type: user_account_type
+                },
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+    <style>
+        #app {
+            border: 3px solid red;
+            margin-bottom: 20px;
+        }
+
+        #shadow-root {
+            border: 3px solid purple;
+        }
+
+        button {
+            color: white;
+            background-color: red;
+        }
+
+        secret-box {
+            display: block;
+            border: 1px solid #aaa;
+            padding: 10px;
+            margin: 20px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <img class="headerIcon" src="img/7513466.png" width="20"><br><br>
+        <h1>Hello</h1>
+        <p>I am a website</p>
+    </div>
+
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("navbar.html");
+        });
+    </script>
+    <!--end of Navigation bar-->
+
+    <div class="row">
+        <div class="side">
+            <h2>Stuff</h2>
+            <img src="img/rainbowEmblem.png" width="300"><br>
+            <img src="img/catEmblem.png" width="300"><br>
+            <img src="img/heartEmblem.png" width="300"><br>
+            <p>Lorem ipsum nightstalker fatebringer.</p>
+            <div>
+                <p>
+                    The current time is:
+                    <span id="datetime"></span>
+                </p>
+                <script>
+                    window.setInterval(function setDate() {
+                        var dt = new Date();
+                        document.getElementById("datetime").innerHTML = dt.toLocaleString();
+                    }, 1000);
+                </script>
+            </div>
+
+        </div>
+        <div class="main">
+            <div id="app">
+                <button type="button">Click</button>
+                <p>This is the normal dom</p>
+            </div>
+            <div id="shadow-root"></div>
+
+
+            <h1>Closed Shadow DOM</h1>
+            <secret-box></secret-box>
+
+            <script>
+                class SecretBox extends HTMLElement {
+                    constructor() {
+                        super();
+                        // Attach a closed shadow root
+                        const shadow = this.attachShadow({ mode: 'closed' });
+
+                        // Create wrapper div
+                        const container = document.createElement('div');
+                        container.style.backgroundColor = '#f9f9f9';
+                        container.style.padding = '10px';
+                        container.style.borderRadius = '5px';
+                        container.style.textAlign = 'center';
+
+                        // Add a message
+                        const message = document.createElement('p');
+                        message.textContent = 'Click the secret button 👇';
+
+                        // Add a button
+                        const button = document.createElement('button');
+                        button.textContent = 'Reveal Secret';
+                        button.style.padding = '6px 12px';
+                        button.style.borderRadius = '4px';
+                        button.style.border = '1px solid #333';
+                        button.style.cursor = 'pointer';
+
+                        // Button click handler
+                        button.addEventListener('click', () => {
+                            alert('🎉 Surprise! You found the secret!');
+                        });
+
+                        container.appendChild(message);
+                        container.appendChild(button);
+                        shadow.appendChild(container);
+                    }
+                }
+
+                customElements.define('secret-box', SecretBox);
+            </script>
+        </div>
+    </div>
+    <div class="footer">
+        <h2>I want to go to there</h2>
+        <a href="https://www.bungie.com">Bungo</a> |
+        <a href="https://www.d2checklist.com">D2 Checklist</a> |
+        <a href="https://www.destinyitemmanager.com">DIM</a>
+    </div>
+
+</body>
+
+</html>
