@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nested Shadow DOM demo</title>
+  <style>
+    /* Page chrome just for the demo */
+    html, body { height: 100%; margin: 0; font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+    body { display: grid; place-items: center; background: #0f172a; }
+    .frame { width: min(920px, 96vw); background: #0b1022; border: 1px solid #1f2937; border-radius: 16px; padding: 16px; color: #e5e7eb; }
+    .hint { opacity: .7; margin-top: 10px; }
+    code { background: #111827; padding: .15rem .35rem; border-radius: 6px; }
+  </style>
+      <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+
+            pendo.initialize({
+                visitor: {
+                    id: user_id,
+                    email: user_email,
+                    full_name: user_full_name,
+                    language: "en_GB",
+                    random: user_random_data
+                },
+                account: {
+                    id: user_account_id,
+                    type: user_account_type
+                },
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+</head>
+<body>
+  <div class="frame">
+    <h1>Nested Shadow DOM: header → dialog → editor → buttons</h1>
+    <p>This reproduces the <em>types and nesting</em> from your screenshot: a header component that hosts a dialog; the dialog contains a note editor; and the editor hosts radio-group and CTA slots filled by <code>&lt;bee-button&gt;</code> components (each with their own shadow root).</p>
+    <!-- pendo.Sizzle('notes-header-button::shadow > div > notes-dialog::shadow dialog > form > note-editor > [bee-type="primary"]::shadow .button') -->
+    <!-- Outer custom element -->
+    <notes-header-button></notes-header-button>
+
+    <p class="hint">Open your devtools Elements panel to inspect the shadow roots.</p>
+  </div>
+
+  <script type="module">
+    // --- <bee-button> --------------------------------------------------------
+    class BeeButton extends HTMLElement {
+      static get observedAttributes() { return ["label", "bee-type", "size", "icon", "title"]; }
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host { display: inline-block; }
+            button {
+              all: unset;
+              display: inline-grid; grid-auto-flow: column; align-items: center; gap: .5rem;
+              padding: .45rem .8rem; border-radius: 10px; cursor: pointer; user-select: none;
+              font-weight: 600; letter-spacing: .01em; line-height: 1;
+              background: #334155; color: #e5e7eb; border: 1px solid #475569;
+            }
+            :host([bee-type="primary"]) button { background: #7c3aed; border-color:#7c3aed; color: white; }
+            :host([bee-type="secondary"]) button { background: #0b1325; }
+            :host([size="small"]) button { padding: .35rem .6rem; font-size: 12px; }
+            button:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+            .icon { width: 1em; height: 1em; display: inline-block; }
+          </style>
+          <button part="button" type="button" class="button">
+            <span class="icon" aria-hidden="true"></span>
+            <span class="label"></span>
+          </button>
+        `;
+      }
+      connectedCallback() {
+        this.#render();
+        this.shadowRoot.querySelector("button")
+          .addEventListener("click", () => this.dispatchEvent(new CustomEvent("bee-click", { bubbles: true, composed: true })));
+      }
+      attributeChangedCallback() { this.#render(); }
+      #render() {
+        const label = this.getAttribute("label") ?? "Button";
+        this.shadowRoot.querySelector(".label").textContent = label;
+        const icon = this.getAttribute("icon");
+        this.shadowRoot.querySelector(".icon").style.display = icon ? "inline-block" : "none";
+        this.shadowRoot.querySelector("button").title = this.getAttribute("title") ?? label;
+      }
+    }
+    customElements.define("bee-button", BeeButton);
+
+    // --- <note-editor> -------------------------------------------------------
+    class NoteEditor extends HTMLElement {
+      constructor(){
+        super();
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host { display: block; }
+            .editor { display: grid; gap: 12px; }
+            .head { display: flex; gap: 8px; align-items: center; }
+            .title { font-weight: 700; font-size: 14px; }
+            input[type="text"], textarea {
+              width: 100%; background: #0b1325; color: #e5e7eb; border: 1px solid #1f2937; border-radius: 10px; padding: .6rem .7rem;
+            }
+            .footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+            .cta { display: inline-flex; gap: 8px; }
+          </style>
+          <div class="editor">
+            <div class="head">
+              <div class="title"></div>
+              <slot name="editor:header:extra"></slot>
+            </div>
+            <input type="text" placeholder="Enter note title" />
+            <textarea rows="4" placeholder="Write your note..."></textarea>
+            <div class="footer">
+              <slot name="editor:footer:radio:group"></slot>
+              <div class="cta"><slot name="editor:footer:cta"></slot></div>
+            </div>
+          </div>
+        `;
+      }
+      connectedCallback(){
+        this.shadowRoot.querySelector('.title').textContent = this.getAttribute('editor-title') || 'New Note';
+        this.addEventListener("bee-click", (e) => {
+          // Bubble a higher-level event so the dialog can react if it wants.
+          const target = e.composedPath()[0];
+          if (target instanceof HTMLElement && target.getAttribute("label")?.toLowerCase() === "save") {
+            this.dispatchEvent(new CustomEvent("editor-save", { bubbles: true, composed: true }));
+          }
+        });
+      }
+    }
+    customElements.define("note-editor", NoteEditor);
+
+    // --- <notes-dialog> ------------------------------------------------------
+    class NotesDialog extends HTMLElement {
+      constructor(){
+        super();
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.innerHTML = `
+          <style>
+            dialog { border: 1px solid #334155; border-radius: 14px; padding: 0; background: #0f172a; color: #e5e7eb; width: 520px; }
+            form { padding: 16px; display: block; }
+            .bar { display: flex; justify-content: flex-end; gap: 8px; padding: 10px 16px; border-top: 1px solid #1f2937; background: #0b1325; border-radius: 0 0 14px 14px; }
+            ::backdrop { background: rgba(0,0,0,.5); }
+          </style>
+          <dialog id="dlg">
+            <form method="dialog">
+              <!-- The editor is inside the dialog's shadow tree (matching your screenshot) -->
+              <note-editor editor-title="New Note">
+                <div slot="editor:footer:radio:group" class="dialog radio group">
+                  <!-- example radio group; you can replace with your own -->
+                  <label><input type="radio" name="visibility" value="private" checked /> Private</label>
+                  <label><input type="radio" name="visibility" value="team" /> Team</label>
+                </div>
+                <bee-button slot="editor:footer:cta" label="Cancel" title="Cancel" bee-type="secondary" size="small"></bee-button>
+                <bee-button slot="editor:footer:cta" label="Save" title="Save" bee-type="primary" size="small" icon="save"></bee-button>
+              </note-editor>
+              <div class="bar">
+                <!-- extra footer (dialog-level) actions could go here if desired -->
+              </div>
+            </form>
+          </dialog>
+        `;
+      }
+      connectedCallback(){
+        const dlg = this.shadowRoot.getElementById("dlg");
+        // Close on Cancel button from inside the editor
+        this.shadowRoot.addEventListener("bee-click", (e) => {
+          const el = e.composedPath()[0];
+          if (el instanceof HTMLElement) {
+            const label = el.getAttribute("label")?.toLowerCase();
+            if (label === "cancel") dlg.close("cancel");
+          }
+        });
+        // Example save handling
+        this.shadowRoot.addEventListener("editor-save", () => {
+          dlg.close("save");
+          this.dispatchEvent(new CustomEvent("note-saved", { bubbles: true, composed: true }));
+        });
+      }
+      open(){ this.shadowRoot.getElementById("dlg").showModal(); }
+      close(){ this.shadowRoot.getElementById("dlg").close(); }
+    }
+    customElements.define("notes-dialog", NotesDialog);
+
+    // --- <notes-header-button> (outermost component hosting <notes-dialog>) --
+    class NotesHeaderButton extends HTMLElement {
+      constructor(){
+        super();
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.innerHTML = `
+          <style>
+            .wrap { display: flex; align-items: center; gap: 8px; }
+            .trigger { all: unset; background: #111827; color: #e5e7eb; border: 1px solid #374151; padding: .45rem .7rem; border-radius: 12px; cursor: pointer; }
+          </style>
+          <div class="wrap">
+            <button class="trigger" type="button">Open Notes</button>
+            <notes-dialog></notes-dialog>
+          </div>
+        `;
+      }
+      connectedCallback(){
+        const trigger = this.shadowRoot.querySelector('.trigger');
+        const dlg = this.shadowRoot.querySelector('notes-dialog');
+        trigger.addEventListener('click', () => dlg.open());
+        this.shadowRoot.addEventListener('note-saved', () => {
+          // surfaced to document for the demo
+          console.log('[notes-header-button] Note saved!');
+        });
+      }
+    }
+    customElements.define("notes-header-button", NotesHeaderButton);
+  </script>
+</body>
+</html>

@@ -5,6 +5,15 @@
 @font-face {
   font-family: myCustomFont;
   src: url(Poppins/Poppins-Medium.ttf);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: myCustomFont;
+  src: url(Poppins/Poppins-Bold.ttf);
+  font-weight: bold;
+  font-style: normal;
 }
 
 /* Style the body */

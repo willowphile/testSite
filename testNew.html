@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test Site</title>
+    <style>
+        :root {
+            --bg-dark: #1e1e2f;
+            --bg-panel: #2a2a40;
+            --accent-purple: #9b5de5;
+            --accent-teal: #00f5d4;
+            --text-light: #f0f0f5;
+            --text-muted: #aaa;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-teal));
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        header button {
+            background: rgba(0, 0, 0, 0.2);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+            /* docked to the left edge */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        header button:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 70px);
+            transition: margin-left 0.3s ease;
+        }
+
+        nav {
+            width: 220px;
+            background: var(--bg-panel);
+            padding: 15px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        nav.collapsed {
+            transform: translateX(-100%);
+        }
+
+        nav a {
+            display: block;
+            padding: 10px;
+            margin-bottom: 6px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        nav a:hover {
+            background: rgba(155, 93, 229, 0.2);
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            transition: margin-left 0.3s ease;
+        }
+
+        h2 {
+            color: var(--accent-teal);
+        }
+
+        /* Accordion */
+        .accordion {
+            background: var(--bg-panel);
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            outline: none;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            color: var(--text-light);
+            transition: background 0.2s;
+        }
+
+        .accordion:hover {
+            background: rgba(0, 245, 212, 0.15);
+        }
+
+        .panel {
+            display: none;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            background: #242438;
+            color: var(--text-muted);
+        }
+
+        /* Buttons */
+        .button-group button {
+            margin-right: 10px;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #fff;
+            background: var(--accent-purple);
+            transition: transform 0.15s, background 0.3s;
+        }
+
+        .button-group button:hover {
+            background: var(--accent-teal);
+            transform: scale(1.05);
+        }
+
+        /* Form elements */
+        input[type="text"],
+        input[type="email"] {
+            background: #2f2f46;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 8px;
+            color: var(--text-light);
+            margin-top: 5px;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin: 6px 0;
+            color: var(--text-light);
+        }
+
+        button[type="submit"] {
+            background: var(--accent-teal);
+            color: #000;
+            padding: 10px 18px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button[type="submit"]:hover {
+            background: var(--accent-purple);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <button onclick="toggleNav()">☰ Menu</button>
+        <span>My Test Site</span>
+    </header>
+
+    <div class="container">
+        <nav id="sidebar">
+            <a href="#" onclick="loadPage('home')">🏠 Home</a>
+            <a href="#" onclick="loadPage('form')">📝 Form</a>
+            <a href="#" onclick="loadPage('accordion')">📂 Accordion</a>
+            <a href="#" onclick="loadPage('buttons')">🔘 Buttons</a>
+        </nav>
+        <main id="content">
+            <h2>Welcome!</h2>
+            <p>Use the navigation links to load content here.</p>
+        </main>
+    </div>
+
+    <script>
+        function toggleNav() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("collapsed");
+        }
+
+        function loadPage(page) {
+            let content = document.getElementById('content');
+            if (page === 'home') {
+                content.innerHTML = "<h2>Home</h2><p>This is the home page content.</p>";
+            }
+            if (page === 'form') {
+                content.innerHTML = `
+          <h2>Sample Form</h2>
+          <form>
+            <label>Name:<br><input type="text" name="name"></label>
+            <label>Email:<br><input type="email" name="email"></label>
+            <label><input type="radio" name="choice" value="A"> Option A</label>
+            <label><input type="radio" name="choice" value="B"> Option B</label>
+            <label><input type="checkbox" name="check1"> Check 1</label>
+            <label><input type="checkbox" name="check2"> Check 2</label>
+            <button type="submit">Submit</button>
+          </form>
+        `;
+            }
+            if (page === 'accordion') {
+                content.innerHTML = `
+          <h2>Accordion Example</h2>
+          <button class="accordion">Section 1</button>
+          <div class="panel"><p>Content for section 1.</p></div>
+          <button class="accordion">Section 2</button>
+          <div class="panel"><p>Content for section 2.</p></div>
+        `;
+                setupAccordion();
+            }
+            if (page === 'buttons') {
+                content.innerHTML = `
+          <h2>Buttons</h2>
+          <div class="button-group">
+            <button onclick="alert('Button 1 clicked!')">Button 1</button>
+            <button onclick="alert('Button 2 clicked!')">Button 2</button>
+            <button onclick="console.log('Button 3 action')">Button 3</button>
+          </div>
+        `;
+            }
+        }
+
+        function setupAccordion() {
+            const acc = document.getElementsByClassName("accordion");
+            for (let i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    let panel = this.nextElementSibling;
+                    panel.style.display = panel.style.display === "block" ? "none" : "block";
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

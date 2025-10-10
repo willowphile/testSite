@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z-Index Accordion</title>
+  <style>
+    .accordion {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .accordion button {
+      width: 200px;
+      padding: 0.75rem;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: #f1f1f1;
+      text-align: left;
+    }
+
+    .panel {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: -1; /* hidden behind by default */
+      opacity: 0;
+      transition: opacity 0.3s, z-index 0.3s;
+    }
+
+    .accordion.open .panel {
+      z-index: 100; /* bring it above everything */
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="accordion">
+    <button>Menu 1</button>
+    <div class="panel">
+      <p>Item 1</p>
+      <p>Item 2</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button>Menu 2</button>
+    <div class="panel">
+      <p>Another dropdown item</p>
+      <p>And another</p>
+    </div>
+  </div>
+
+  <script>
+    const accordions = document.querySelectorAll(".accordion");
+
+    accordions.forEach(acc => {
+      const button = acc.querySelector("button");
+      button.addEventListener("click", () => {
+        // close other accordions
+        accordions.forEach(a => a.classList.remove("open"));
+        // toggle this one
+        acc.classList.toggle("open");
+      });
+    });
+
+    // Optional: close when clicking outside
+    document.addEventListener("click", e => {
+      if (![...accordions].some(acc => acc.contains(e.target))) {
+        accordions.forEach(acc => acc.classList.remove("open"));
+      }
+    });
+  </script>
+</body>
+</html>

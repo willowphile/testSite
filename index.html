@@ -37,13 +37,13 @@
       // Call this whenever information about your visitors becomes available
       // Please use Strings, Numbers, or Bools for value types.
       pendo.initialize({
-        //excludeAllText: true,
+       //excludeAllText: true,
         //disableGuides: true,
         visitor: {
           id: user_id,   // Required if user is logged in
           email: user_email, // Recommended if using Pendo Feedback, or NPS Email
           full_name: user_full_name,// Recommended if using Pendo Feedback
-          language: "en_GB",
+          lang: "en_US",
           random: user_random_data,
           boolean: user_boolean,
           ee326: "this shouldn't process",
@@ -67,14 +67,16 @@
       });
     })('a93e68a6-46fd-443a-699f-aa31985c066d');
   </script>
+  
+  <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=ab57b084-95a4-4dcc-bc94-6d6bb141c9f3"></script>
 
-  <style>
+  <!--   <style>
     select {
       display: none !important;
       visibility: hidden !important;
       opacity: 0 !important;
     }
-  </style>
+  </style> -->
   <!--   <script>
     console.log = function () { }
     console.group = function () { }
@@ -88,7 +90,7 @@
   <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
 
 
-<!--   <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' app.pendo.io pendo-io-static.storage.googleapis.com cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+  <!--   <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' app.pendo.io pendo-io-static.storage.googleapis.com cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
   style-src 'unsafe-inline' app.pendo.io cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
   img-src cdn.pendo.io app.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
   connect-src app.pendo.io data.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
@@ -160,9 +162,10 @@
     </div>
     <div id="mainDiv" class="main" title="blah blah (AgathaHarkness)">
       <div>
-        <button onclick="dummyClick()" class="buttonRainbow" id="dummyClick"
-          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
-          for a dummy event!</button>
+        <button title="saliBabby" onclick="dummyClick()" class="buttonRainbow" id="dummyClick"
+          style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>
+          <span>Click me for a dummy event!</span>
+        What's some more text?</button>
         <script type="text/javascript">
           function dummyClick() {
             console.log("yeah, it's clicked");
@@ -172,14 +175,18 @@
       <br>
       <div>
         <a href="sheBasic.html">
-          <button class="buttonRainbow" id="backToBasics"
-        style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Back to sheBasic</button>
-      </a>
+          <button disabled class="buttonRainbow" id="backToBasics"
+            style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Back to.
+            sheBasic</button>
+        </a>
       </div>
+
+
       <div id="imageDiv" style="display: flex; opacity: 0; margin-left: 20%;"><img id="dumpsterFire"
           src="img/dumpsterFire.gif" width="500"><br></div>
       <!-- <iframe src="cats.html" height="800" width="75%" title="Cats" style="border:1px solid black;"></iframe> -->
-      <!-- <iframe src="iframe.html" height="800" width="75%" title="iframe" style="border:1px solid black;"></iframe> -->
+      <iframe sandbox src="iframe.html" height="800" width="75%" title="iframe"
+        style="border:1px solid black;"></iframe>
     </div>
   </div>
 

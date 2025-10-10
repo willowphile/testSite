@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Example</title>
+    <style>
+        .accordion {
+            background: #f1f1f1;
+            cursor: pointer;
+            padding: 1rem;
+            border: none;
+            text-align: left;
+            outline: none;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .accordion:hover {
+            background: #ddd;
+        }
+
+        .panel {
+            padding: 0 1rem;
+            display: none;
+            background: white;
+            overflow: hidden;
+            border-left: 2px solid #ccc;
+        }
+    </style>
+    <script src="firstfile.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] = o[m] || function () {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            pendo.initialize({
+                //excludeAllText: true,
+                //disableGuides: true,
+                visitor: {
+                    id: user_id,   // Required if user is logged in
+                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name: user_full_name,// Recommended if using Pendo Feedback
+                    lang: "en_US",
+                    random: user_random_data,
+                    boolean: user_boolean,
+                    ee326: "this shouldn't process",
+                    newfieldtodelete: "casing will get you every time",
+                    anothernewfieldtodelete: "casing will get you every time",
+                    //date1:        user_date1
+                    //date2:        user_date2
+                },
+
+                account: {
+                    id: user_account_id, // Highly recommended
+                    type: user_account_type// Optional
+                },
+
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+      <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+
+</head>
+
+<body>
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+
+        <button title="saliBabby" onclick="dummyClick()" class="buttonRainbow" id="dummyClick"
+            style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>
+            <span>Click me for a dummy event!</span>
+            What's some more text?</button>
+        <script type="text/javascript">
+            function dummyClick() {
+                console.log("yeah, it's clicked");
+            }
+        </script>
+
+        <button title="saliBabby" onclick="dummyClick2()" class="buttonRainbow" id="dummyClick"
+            style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>
+            <span>Click me for a dummy event2!</span>
+            What's some more text?</button>
+        <script type="text/javascript">
+            function dummyClick2() {
+                console.log("yeah, it's clicked");
+            }
+        </script>
+
+        <button title="saliBabby" onclick="dummyClick3()" class="buttonRainbow" id="dummyClick"
+            style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>
+            <span>Click me for a dummy event3!</span>
+            What's some more text?</button>
+        <script type="text/javascript">
+            function dummyClick3() {
+                console.log("yeah, it's clicked");
+            }
+        </script>
+</div>
+        <button class="accordion">Section 2</button>
+        <div class="panel">
+            <p>Content for section 2.</p>
+        </div>
+
+        <button class="accordion">Section 3</button>
+        <div class="panel">
+            <p>Content for section 3.</p>
+        </div>
+
+        <script>
+            const acc = document.querySelectorAll(".accordion");
+            acc.forEach(button => {
+                button.addEventListener("click", () => {
+                    button.classList.toggle("active");
+                    const panel = button.nextElementSibling;
+                    panel.style.display = panel.style.display === "block" ? "none" : "block";
+                });
+            });
+        </script>
+</body>
+
+</html>
