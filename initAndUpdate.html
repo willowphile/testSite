@@ -64,6 +64,10 @@
                     Initialize and Update
                 </button>
             </div>
+            <br />
+            <p><strong>Link to visitorId:</strong> <span id="visitorIdOutput"></span></p>
+            <p><strong>Link to accountId:</strong> <span id="accountIdOutput"></span></p>
+            <p><strong>Link to parentAccountId:</strong> <span id="parentAccountIdOutput"></span></p>
         </div>
     </div>
     <script>
@@ -76,6 +80,12 @@
             const visitorId = `${baseVisitorId}_${timestamp}`;
             const accountId = `${baseVisitorId}_${timestamp}_account`;
             const parentAccountId = `${baseVisitorId}_${timestamp}_parentAccount`;
+
+            const baseUrl = "https://app.pendo.io/s/5745181794369536";
+
+            const visitorUrl = `${baseUrl}/visitor/${visitorId}`;
+            const accountUrl = `${baseUrl}/account/${parentAccountId}::${accountId}`;
+            const parentAccountUrl = `${baseUrl}/account/${parentAccountId}`;
 
             // 4️⃣ Pass those to Pendo
             pendo.initialize({
@@ -111,7 +121,14 @@
             console.log("visitorId:", visitorId);
             console.log("accountId:", accountId);
             console.log("parentAccountId:", parentAccountId);
-            
+
+            const visitorOutput = document.getElementById("visitorIdOutput");
+            const accountOutput = document.getElementById("accountIdOutput");
+            const parentAccountOutput = document.getElementById("parentAccountIdOutput");
+
+            visitorOutput.innerHTML = `<a href="${visitorUrl}" target="_blank">${visitorId}</a>`;
+            accountOutput.innerHTML = `<a href="${accountUrl}" target="_blank">${accountId}</a>`;
+            parentAccountOutput.innerHTML = `<a href="${parentAccountUrl}" target="_blank">${parentAccountId}</a>`;
         });
     </script>
 </body>
