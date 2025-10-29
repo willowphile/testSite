@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="firstfile.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = o._q || [];
+                v = [
+                    "initialize",
+                    "identify",
+                    "updateOptions",
+                    "pageLoad",
+                    "track",
+                ];
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function (m) {
+                        o[m] =
+                            o[m] ||
+                            function () {
+                                o._q[m === v[0] ? "unshift" : "push"](
+                                    [m].concat([].slice.call(arguments, 0)),
+                                );
+                            };
+                    })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+                y.src =
+                    "https://cdn.pendo.io/agent/static/" + apiKey + "/pendo.js";
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, "script", "pendo");
+        })("a93e68a6-46fd-443a-699f-aa31985c066d");
+    </script>
+
+    <title>Simultaneous Initialize and Update</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+</head>
+
+<body>
+    <div class="header">
+        <img class="headerIcon" src="img/7513466.png" width="40" /><br /><br />
+        <h1>Hello</h1>
+        <p>I am a website</p>
+    </div>
+
+    <div class="row">
+        <div class="main" style="text-align: center">
+            <br />
+            <input type="text" id="visitorIdField" placeholder="enter a visitor id" style="
+                  border: solid 2px black;
+                  height: 40px;
+                  width: 25%;
+                  vertical-align: middle;" /><br /><br />
+            <div>
+                <button class="buttonRainbow" id="initAndUpdate">
+                    Initialize and Update
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const button = document.getElementById("initAndUpdate");
+        button.addEventListener("click", () => {
+            const baseVisitorId = document
+                .getElementById("visitorIdField")
+                .value.trim();
+            const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, "");
+            const visitorId = `${baseVisitorId}_${timestamp}`;
+            const accountId = `${baseVisitorId}_${timestamp}_account`;
+            const parentAccountId = `${baseVisitorId}_${timestamp}_parentAccount`;
+
+            // 4️⃣ Pass those to Pendo
+            pendo.initialize({
+                visitor: {
+                    id: visitorId,
+                    name: "visitor name sent in initialize",
+                },
+                account: {
+                    id: accountId,
+                    random: "account random sent in initialize",
+                },
+                parentAccount: {
+                    id: parentAccountId,
+                    random: "blah blah parent account info sent in initialize",
+                },
+            });
+
+            pendo.updateOptions({
+                visitor: {
+                    id: visitorId,
+                    random: "visitor random sent in updateOptions",
+                    name: "visitor name sent in updateOptions",
+                },
+                account: {
+                    id: accountId,
+                },
+                parentAccount: {
+                    id: parentAccountId,
+                    random: "blah blah parent account info sent in updateOptions",
+                },
+            });
+
+            console.log("visitorId:", visitorId);
+            console.log("accountId:", accountId);
+            console.log("parentAccountId:", parentAccountId);
+            
+        });
+    </script>
+</body>
+
+</html>
