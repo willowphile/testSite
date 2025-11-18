@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pendo Guide History → CSV (Client‑side)</title>
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --muted:#9ca3af; --text:#e5e7eb; --accent:#38bdf8; }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: linear-gradient(180deg, #0b1022, #0f172a);
+      color:var(--text);
+      min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .app{ width: min(1050px, 100%); }
+    .card{
+      background: rgba(17,24,39,.7); backdrop-filter: blur(10px);
+      border:1px solid rgba(148,163,184,.2);
+      border-radius:20px; padding:24px; box-shadow: 0 20px 40px rgba(0,0,0,.35);
+    }
+    h1{ font-size:clamp(20px, 2.5vw, 32px); margin:0 0 12px; letter-spacing:.2px; }
+    p.sub{ color:var(--muted); margin:0 0 20px; }
+    label{ display:block; font-weight:600; margin:14px 0 6px; }
+    input, select, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(148,163,184,.25);
+      background:#0b1220; color:var(--text); outline:none;
+    }
+    textarea{ min-height: 140px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px;}
+    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    .actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; align-items:center; }
+    button{
+      border:none; padding:12px 16px; border-radius:12px; cursor:pointer;
+      background:var(--accent); color:#062332; font-weight:700;
+    }
+    button.secondary{ background:transparent; color:var(--text); border:1px solid rgba(148,163,184,.35); }
+    .status{ margin-top:16px; color:var(--muted); min-height: 22px; white-space:pre-wrap; }
+    .error{ color:#fca5a5; }
+    .ok{ color:#86efac; }
+    .hint{ font-size:12px; color:var(--muted); }
+    .divider{ height:1px; background: rgba(148,163,184,.2); margin:18px 0; }
+    .badge{ display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid rgba(148,163,184,.35); color:var(--muted); }
+    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    .muted{ color:var(--muted); }
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+  </style>
+  <!-- Danfo.js (pandas-like DataFrame for JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/danfojs@1.4.0/lib/bundle.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <div class="card">
+      <h1>Pendo Guide History → CSV</h1>
+      <p class="sub">Client‑side only. Enter inputs, fetch the guide history, process with DataFrames in the browser, and download a CSV.</p>
+      <div class="badge">beta</div>
+
+      <div class="divider"></div>
+
+      <form id="form">
+        <div class="row">
+          <div>
+            <label for="subId">Subscription ID</label>
+            <input id="subId" name="subId" placeholder="e.g., 1234567890" required />
+          </div>
+          <div>
+            <label for="region">Region</label>
+            <select id="region" name="region">
+              <option value="app.pendo.io">io (default)</option>
+              <option value="us1.app.pendo.io">us1</option>
+              <option value="app.eu.pendo.io">eu</option>
+              <option value="app.jpn.pendo.io">jpn</option>
+            </select>
+            <div class="hint">Used in https://&lt;region&gt;.pendo.io</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="guideId">Guide ID</label>
+            <input id="guideId" name="guideId" placeholder="e.g., g-abc123" required />
+          </div>
+          <div>
+            <label for="cookie">Pendo Session Cookie (optional*)</label>
+            <input id="cookie" name="cookie" placeholder="pendo.sess=..." />
+            <div class="hint">*Browsers can’t set the <code>Cookie</code> header directly. If CORS + credentials are enabled for your domain, the browser’s cookie will be sent automatically when using <code>credentials: 'include'</code>. If not, use “Paste JSON” mode below.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Get Guide History &amp; Export CSV</button>
+          <button type="button" class="secondary" id="pasteModeBtn" title="If fetch is blocked by auth/CORS, paste raw JSON here and still export a CSV.">Use “Paste JSON” mode</button>
+          <span id="spin" class="muted"></span>
+        </div>
+
+        <div class="status" id="status"></div>
+        <div id="error" class="status error"></div>
+      </form>
+
+      <div id="pasteBox" style="display:none; margin-top:12px;">
+        <label for="jsonInput">Paste API JSON Response</label>
+        <textarea id="jsonInput" placeholder="{ /* paste the response body from /api/s/{subId}/guide/{guideId}/history */ }"></textarea>
+        <div class="actions">
+          <button id="processJsonBtn" type="button">Process JSON → CSV</button>
+          <button id="closePaste" type="button" class="secondary">Close</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <p class="hint">
+        Expected endpoint: <code>https://&lt;region&gt;.pendo.io/api/s/&lt;subId&gt;/guide/&lt;guideId&gt;/history</code>.
+        We attempt to normalize <em>steps</em> and <em>audience/segment</em> fields, add timestamps, and merge the two DataFrames by a sensible key.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // helpers
+    const $ = (id) => document.getElementById(id);
+    const setStatus = (msg, ok=false) => {
+      $('status').textContent = msg || '';
+      $('status').className = 'status ' + (ok ? 'ok' : '');
+    };
+    const setError = (msg) => { $('error').textContent = msg || ''; };
+
+    $('pasteModeBtn').addEventListener('click', () => {
+      $('pasteBox').style.display = 'block';
+      setError('');
+      setStatus('Paste the raw JSON and click “Process JSON → CSV”.');
+    });
+    $('closePaste').addEventListener('click', () => {
+      $('pasteBox').style.display = 'none';
+      setStatus('');
+      setError('');
+    });
+
+    $('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      setError('');
+      setStatus('Preparing request…');
+      $('spin').textContent = '⏳';
+
+      const subId   = $('subId').value.trim();
+      const region  = $('region').value.trim() || 'io';
+      const guideId = $('guideId').value.trim();
+      const cookie  = $('cookie').value.trim();
+
+      if (!subId || !guideId) {
+        setError('Subscription ID and Guide ID are required.');
+        $('spin').textContent = ''; return;
+      }
+
+      // Build URL
+      const url = `https://${region}/api/s/${encodeURIComponent(subId)}/guide/${encodeURIComponent(guideId)}/history`;
+
+      try {
+        setStatus(`Fetching ${url} …`);
+        const res = await fetch(url, {
+          method: 'GET',
+          // IMPORTANT: If your browser is authenticated to the pendo.io domain and CORS allows credentials,
+          // cookies will be sent with this flag. We CANNOT set the Cookie header directly.
+          credentials: 'include',
+          headers: {
+            // 'Cookie': cookie // forbidden header in browsers; left here for clarity only
+          }
+        });
+
+        if (!res.ok) {
+          const body = await res.text().catch(()=>'');
+          throw new Error(`HTTP ${res.status}: ${res.statusText}\n${body}`);
+        }
+        const data = await res.json();
+        setStatus('Fetched. Processing…');
+
+        await processDataAndDownload(data);
+        setStatus('Done. CSV downloaded ✅', true);
+      } catch (err) {
+        setError(String(err));
+        setStatus('');
+      } finally {
+        $('spin').textContent = '';
+      }
+    });
+
+    $('processJsonBtn').addEventListener('click', async () => {
+      setError('');
+      try {
+        const raw = $('jsonInput').value;
+        const data = JSON.parse(raw);
+        setStatus('Processing pasted JSON…');
+        await processDataAndDownload(data);
+        setStatus('Done. CSV downloaded ✅', true);
+      } catch (err) {
+        setError('Invalid JSON: ' + err.message);
+        setStatus('');
+      }
+    });
+
+    // Data processing (Danfo.js)
+    async function processDataAndDownload(root) {
+      // Attempt to locate likely structures
+      // Some responses may contain a "history" array; others a single object with "steps" and "audience".
+      const history = Array.isArray(root) ? root
+                     : Array.isArray(root.history) ? root.history
+                     : [root];
+
+      // Collect rows for steps and audience/segment
+      const stepRows = [];
+      const segRows  = [];
+
+      for (const entry of history) {
+        const common = {
+          guideId: entry.guideId ?? entry.id ?? null,
+          lastUpdatedAt: entry.lastUpdatedAt ?? entry.updatedAt ?? null,
+          lastUpdatedBy: entry.lastUpdatedBy ?? entry.updatedBy ?? null,
+        };
+
+        // Steps normalization
+        const steps = entry.steps || entry.stepHistory || [];
+        for (const s of (steps || [])) {
+          // Flatten one level deep
+          const row = {
+            ...common,
+            id: s.id ?? s.stepId ?? s._id ?? null,
+            stepId: s.stepId ?? s.id ?? null,
+            stepName: s.name ?? s.stepName ?? null,
+            stepState: s.state ?? s.status ?? null,
+            stepVersion: s.version ?? null,
+            createdAt: s.createdAt ?? null,
+            lastUpdatedAt: s.lastUpdatedAt ?? common.lastUpdatedAt ?? null,
+            lastUpdatedBy: s.lastUpdatedBy ?? common.lastUpdatedBy ?? null,
+            aggregation: s.aggregation ? JSON.stringify(s.aggregation) : (s.rules ? JSON.stringify(s.rules) : null),
+          };
+          stepRows.push(row);
+        }
+
+        // Audience / Segment normalization
+        const audience = entry.audience || entry.segment || entry.segments;
+        if (audience) {
+          const segArray = Array.isArray(audience) ? audience : [audience];
+          for (const a of segArray) {
+            const row = {
+              id: a.id ?? a.segmentId ?? null,
+              guideId: common.guideId ?? null,
+              kind: a.kind ?? a.type ?? null,
+              name: a.name ?? null,
+              rule: a.rule ? JSON.stringify(a.rule) : (a.rules ? JSON.stringify(a.rules) : null),
+              lastUpdatedAt: common.lastUpdatedAt ?? null,
+              lastUpdatedBy: common.lastUpdatedBy ?? null,
+            };
+            segRows.push(row);
+          }
+        }
+      }
+
+      // Build DataFrames
+      const dfSteps = new dfd.DataFrame(stepRows);
+      const dfSeg   = new dfd.DataFrame(segRows);
+
+      // Timestamp column (ms → ISO)
+      if (dfSteps.columns.includes('lastUpdatedAt')) {
+        const ts = dfSteps['lastUpdatedAt'].values.map(v => {
+          if (v == null) return null;
+          const n = Number(v);
+          if (!Number.isNaN(n) && n > 1e10) { // likely ms
+            return new Date(n).toISOString();
+          }
+          // if it's ISO string already
+          const d = new Date(v);
+          return Number.isNaN(d.getTime()) ? null : d.toISOString();
+        });
+        dfSteps.addColumn('logTimestamp', ts, { inplace: true });
+        // Move to first column
+        const cols = dfSteps.columns;
+        const i = cols.indexOf('logTimestamp');
+        if (i > 0) {
+          const newCols = ['logTimestamp', ...cols.filter(c => c !== 'logTimestamp')];
+          dfSteps.columns = newCols;
+        }
+      }
+
+      // Choose merge key
+      const joinKeys = ['id', 'stepId', 'guideId'];
+      const key = joinKeys.find(k => dfSteps.columns.includes(k) && dfSeg.columns.includes(k)) || 'guideId';
+
+      // Merge
+      let dfFinal;
+      if (dfSeg.shape[0] > 0) {
+        dfFinal = dfd.merge({ left: dfSteps, right: dfSeg, on: key, how: 'left' });
+      } else {
+        dfFinal = dfSteps;
+      }
+
+      // Rename aggregation column like the Python script notes
+      if (dfFinal.columns.includes('aggregation')) {
+        dfFinal.rename({ 'aggregation': 'aggregation (reference only, not proper json)' }, { inplace: true });
+      }
+
+      // Export to CSV
+      const csv = await dfFinal.toCSV();
+      downloadText(csv, 'guideExport.csv', 'text/csv');
+    }
+
+    function downloadText(text, filename, mime='text/plain') {
+      const blob = new Blob([text], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(url);
+      a.remove();
+    }
+  </script>
+</body>
+</html>
