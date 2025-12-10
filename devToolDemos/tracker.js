@@ -1,0 +1,1 @@
+console.log("tracker.js module evaluated");import{p as n}from"./pendoInit.js";export function b(e){console.log("beginTracking() called");const t={...e,plan:"Pro",org:"Example Co"};console.log("Passing enriched user to initPendo()"),n(t)};

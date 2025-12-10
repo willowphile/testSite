@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendo Init Demo – Multi-File Chain</title>
+
+  <!-- Preload analytics for realism -->
+  <link rel="modulepreload" href="./analytics.js" />
+
+  <script>
+    // Simple stand-in for the Pendo agent
+    window.pendo = {
+      initialize: (config) => {
+        console.log("✅ Pendo initialized with:", config);
+      },
+    };
+  </script>
+
+  <!-- Start the main app -->
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <h1>Pendo Initialization Demo (Two-Level Import Chain)</h1>
+  <p>
+    Open DevTools → Network, Coverage, and Sources.<br />
+    Watch how the files load and execute as you click below.
+  </p>
+
+  <button id="analyticsBtn">Go to Analytics</button>
+</body>
+</html>

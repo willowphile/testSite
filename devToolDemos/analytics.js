@@ -1,0 +1,1 @@
+console.log("analytics.js parsed (ready but not yet executed)");import{b as t}from"./tracker.js";export function s(){console.log("startAnalytics() called");const e={id:42,email:"demo@pendo.io"};e&&e.id?(console.log("Conditions met. Calling beginTracking()..."),t(e)):console.log("Conditions not met. Skipping tracking.")};

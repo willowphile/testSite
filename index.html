@@ -70,8 +70,8 @@
     })('a93e68a6-46fd-443a-699f-aa31985c066d');
   </script>
 
-  <script id="ze-snippet"
-    src="https://static.zdassets.com/ekr/snippet.js?key=ab57b084-95a4-4dcc-bc94-6d6bb141c9f3"></script>
+  <!-- <script id="ze-snippet"
+    src="https://static.zdassets.com/ekr/snippet.js?key=ab57b084-95a4-4dcc-bc94-6d6bb141c9f3"></script> -->
 
   <!--   <style>
     select {
@@ -218,8 +218,8 @@
       <div id="imageDiv" style="display: flex; opacity: 0; margin-left: 20%;"><img id="dumpsterFire"
           src="img/dumpsterFire.gif" width="500"><br></div>
       <!-- <iframe src="cats.html" height="800" width="75%" title="Cats" style="border:1px solid black;"></iframe> -->
-      <iframe sandbox src="iframe.html" height="800" width="75%" title="iframe"
-        style="border:1px solid black;"></iframe>
+      <!-- <iframe sandbox src="iframe.html" height="800" width="75%" title="iframe"
+        style="border:1px solid black;"></iframe> -->
     </div>
   </div>
 
@@ -230,7 +230,7 @@
     <a href="https://www.d2checklist.com">D2 Checklist</a> |
     <a href="https://www.destinyitemmanager.com">DIM</a>
   </div>
-  <script>
+  <!-- <script>
     const pendoController = {
       pendo: window.pendo, // get the global Pendo object if it exists
 
@@ -244,6 +244,37 @@
         }
       }
     };
+  </script> -->
+  <script>
+    // check to see if pendo exists AND pendo.isReady is a function.
+    // if true, set pendo.excludeAllText to false, otherwise retry after a delay.
+    function waitForPendoReady(callback, retryInterval = 500, maxAttempts = 20) {
+      let attempts = 0;
+      const check = () => {
+        attempts++;
+        // check to see if pendo exists AND pendo.isReady is a function
+        if (window.pendo && typeof pendo.isReady === "function") {
+          // Now check if pendo is ready
+          if (pendo.isReady()) {
+            callback();
+            return;
+          }
+        }
+        // give up all hope after max attempts
+        if (attempts >= maxAttempts) {
+          console.warn("[EAT] Pendo is not ready after max attempts.");
+          return;
+        }
+        setTimeout(check, retryInterval);
+      };
+      check();
+    }
+
+    // once we're sure pendo is ready, set excludeAllText to false :tada:
+    waitForPendoReady(() => {
+      pendo.excludeAllText = false;
+      console.log("[EAT] Pendo is ready, excludeAllText set to false.");
+    });
   </script>
 </body>
 
