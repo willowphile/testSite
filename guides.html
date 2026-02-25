@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Guides</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+    <script src="firstfile.js"></script>
+    <style>
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            font-size: 35px;
+            background-color: #1C0C3B;
+        }
+
+        .row {
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        /* Create three equal columns that sits next to each other */
+        .column {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            padding: 10px;
+            height: 300px;
+        }
+
+        @media (max-width: 600px) {
+            .row {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Oh hai</h1>
+        <p>I am Alisyn's test site</p>
+        <p id="visitorHeader"></p>
+        <script>
+            function visitorHeader() {
+                window.setInterval(function getvisitorHeader() {
+                    var dt = new Date();
+                    document.getElementById("visitorHeader").innerHTML = pendo.getVisitorId();
+                }, 1000);
+            }
+            setTimeout(visitorHeader, 5000);
+        </script>
+    </div>
+
+    <div class="row">
+        <div class="column" style="background-color:#2c73d2;">Column</div>
+        <div class="column" style="background-color:#0089ba;">Column</div>
+        <div class="column" style="background-color:#008e9b;">Column</div>
+    </div>
+
+    <div class="footer">
+        <p>Footer</p>
+    </div>
+
+</body>
+
+</html>
