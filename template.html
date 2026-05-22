@@ -5,34 +5,35 @@
     <script src="firstfile.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
-        (function (apiKey) {
-            (function (p, e, n, d, o) {
-                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
-                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
-                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+        (function(apiKey) {
+            (function(p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)(function(m) {
+                    o[m] = o[m] || function() {
+                        o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                    };
                 })(v[w]);
-                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
-                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+                y = e.createElement(n);
+                y.async = !0;
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
             })(window, document, 'script', 'pendo');
-            // Call this whenever information about your visitors becomes available
-            // Please use Strings, Numbers, or Bools for value types.
             pendo.initialize({
-                //excludeAllText: true,
-                //DisableGuides: True,
                 visitor: {
-                    id: user_id,   // Required if user is logged in
-                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
-                    full_name: user_full_name,// Recommended if using Pendo Feedback
+                    id: user_id,
+                    email: user_email,
+                    full_name: user_full_name,
                     language: "en_GB",
                     random: user_random_data
-                    //boolean:      user_boolean
-                    //date1:        user_date1
-                    //date2:        user_date2
                 },
 
                 account: {
-                    id: user_account_id, // Highly recommended
-                    type: user_account_type// Optional
+                    id: user_account_id,
+                    type: user_account_type
                 },
 
                 parentAccount: {
@@ -57,6 +58,16 @@
         <img class="headerIcon" src="img/7513466.png" width="20"><br><br>
         <h1>Hello</h1>
         <p>I am a website</p>
+        <p>You are <span id="visitorHeader"></span></p>
+        <script>
+            function visitorHeader() {
+                window.setInterval(function getvisitorHeader() {
+                    var dt = new Date();
+                    document.getElementById("visitorHeader").innerHTML = pendo.getVisitorId();
+                }, 1000);
+            }
+            setTimeout(visitorHeader, 1000);
+        </script>
     </div>
 
     <!--Navigation bar-->
@@ -65,7 +76,7 @@
     </div>
 
     <script>
-        $(function () {
+        $(function() {
             $("#nav-placeholder").load("navbar.html");
         });
     </script>
@@ -82,37 +93,20 @@
         </div>
         <div class="main">
             <div>
-                <button onclick="dummyClick()" class="buttonRainbow" id="dummyClick"
-                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me
-                    for a dummy event!</button>
-
+                <!-- this is an example button -->
+                <button onclick="dummyClick()" class="buttonRainbow" id="dummyClick" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me for a dummy event!</button>
                 <script type="text/javascript">
                     function dummyClick() {
                         console.log("yeah, it's clicked");
                     }
                 </script>
             </div>
-            <br>
             <div>
-                <button onclick="getVisitorId()" class="buttonRainbow" id="getVisitorId"
-                    style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>getVisitorId</button>
-
-                <p id="getVisitorIdOutput"></p>
-
-                <script type="text/javascript">
-                    function getVisitorId() {
-                        document.getElementById("getVisitorIdOutput").innerHTML = pendo.getVisitorId()
-                    }
-                </script>
+                <!-- This is where the table would be maybe? -->
             </div>
         </div>
     </div>
-    <div class="footer">
-        <h2>I want to go to there</h2>
-        <a href="https://www.bungie.com">Bungo</a> |
-        <a href="https://www.d2checklist.com">D2 Checklist</a> |
-        <a href="https://www.destinyitemmanager.com">DIM</a>
-    </div>
+
 
 </body>
 

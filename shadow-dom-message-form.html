@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shadow DOM Message Form</title>
+      <script src="firstfile.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      background: #f0f2f5;
+      color: #111;
+      padding: 24px;
+    }
+
+    /* ── outer shell ── */
+    #messages-rail {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .messages-panes {}
+
+    #lbl-message-content {
+      background: #fff;
+      border: 1px solid #dde1e7;
+      border-radius: 10px;
+      overflow: visible;
+    }
+
+    .message-inner {
+      padding: 20px;
+    }
+
+    #txtConversationTitle {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 16px;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pad-h-no {
+      padding: 0;
+    }
+
+    /* ── body textarea field (light DOM, not custom element) ── */
+    .field-container {
+      border: 1px solid #ccd0d9;
+      border-radius: 8px;
+      background: #fff;
+      overflow: visible;
+    }
+
+    .field-container .label-wrapper {
+      padding: 4px 10px 0;
+    }
+
+    .field-container .label-wrapper label {
+      font-size: 11px;
+      color: #666;
+      display: block;
+    }
+
+    .messages-container-inner {
+      padding: 6px 10px 10px;
+    }
+
+    textarea.message-body {
+      width: 100%;
+      resize: vertical;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 13px;
+      color: #111;
+      min-height: 90px;
+    }
+
+    textarea.message-body::placeholder {
+      color: #aaa;
+    }
+  </style>
+      <script>
+        (function (apiKey) {
+            (function (p, e, n, d, o) {
+                var v, w, x, y, z; o = p[d] = p[d] || {}; o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; for (w = 0, x = v.length; w < x; ++w)(function (m) {
+                    o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+                })(v[w]);
+                y = e.createElement(n); y.async = !0; y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            pendo.initialize({
+                //excludeAllText: true,
+                //DisableGuides: True,
+                visitor: {
+                    id: user_id,   // Required if user is logged in
+                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name: user_full_name,// Recommended if using Pendo Feedback
+                    language: "en_GB",
+                    random: user_random_data
+                    //boolean:      user_boolean
+                    //date1:        user_date1
+                    //date2:        user_date2
+                },
+
+                account: {
+                    id: user_account_id, // Highly recommended
+                    type: user_account_type// Optional
+                },
+
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                }
+            });
+        })('a93e68a6-46fd-443a-699f-aa31985c066d');
+    </script>
+</head>
+<body>
+
+<div id="messages-rail">
+  <div id="messages" class="messages-panes">
+    <!-- header would live here -->
+    <div id="lbl-message-content" test-id="lblMessageContent">
+      <div class="message-inner">
+        <h2 id="txtConversationTitle" class="conversation-title mrg-B-lg">New Message</h2>
+        <div class="form-container">
+
+          <!-- Recipient selector (q2-select custom element) -->
+          <div class="pad-h-no" id="recipient-wrapper"></div>
+
+          <!-- Subject selector (q2-select custom element) -->
+          <div class="pad-h-no" id="subject-wrapper"></div>
+
+          <!-- Message body (plain light DOM) -->
+          <div class="pad-h-no" id="body-wrapper">
+            <div class="field-container">
+              <div class="label-wrapper"><label for="messageBody">Message</label></div>
+              <div class="messages-container-inner">
+                <textarea
+                  id="messageBody"
+                  class="message-body"
+                  placeholder="Type your message here..."
+                  aria-label="Message body"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- q2-option: light-DOM carrier; q2-select reads its children -->
+<script>
+class Q2Option extends HTMLElement {
+  static get observedAttributes() { return ['value', 'display', 'aria-selected']; }
+}
+customElements.define('q2-option', Q2Option);
+
+
+class Q2Select extends HTMLElement {
+  static get observedAttributes() { return ['label', 'placeholder', 'value']; }
+
+  constructor() {
+    super();
+    this._shadow = this.attachShadow({ mode: 'open' });
+    this._open   = false;
+    this._value  = '';
+    this._optionData = [];
+  }
+
+  connectedCallback() {
+    this._collectOptions();
+    this._render();
+    this._bindEvents();
+  }
+
+  _collectOptions() {
+    this._optionData = Array.from(this.querySelectorAll('q2-option')).map(el => ({
+      value:  el.getAttribute('value') || '',
+      label:  el.getAttribute('display') || el.textContent.trim(),
+      testId: el.getAttribute('test-id') || ''
+    }));
+  }
+
+  get selectedLabel() {
+    const match = this._optionData.find(o => o.value === this._value);
+    return match ? match.label : '';
+  }
+
+  _render() {
+    const label       = this.getAttribute('label')       || '';
+    const placeholder = this.getAttribute('placeholder') || '';
+    const inputId     = `input-${this.getAttribute('test-id') || this.id || Math.random().toString(36).slice(2)}`;
+
+    this._shadow.innerHTML = `
+      <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :host {
+          display: block;
+          position: relative;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          font-size: 14px;
+        }
+
+        /* ── field shell ── */
+        .field-container {
+          border: 1px solid #ccd0d9;
+          border-radius: 8px;
+          background: #fff;
+          position: relative;
+          transition: border-color 0.15s;
+        }
+
+        .field-container:focus-within {
+          border-color: #4a90d9;
+          box-shadow: 0 0 0 3px rgba(74,144,217,0.15);
+        }
+
+        /* ── label ── */
+        .label-wrapper {
+          padding: 4px 10px 0;
+        }
+
+        label {
+          font-size: 11px;
+          color: #666;
+          display: block;
+          cursor: pointer;
+          user-select: none;
+        }
+
+        /* ── input row ── */
+        .input-container {
+          display: flex;
+          align-items: center;
+          padding: 0 10px;
+          height: 34px;
+          cursor: pointer;
+        }
+
+        .input-icons-container-left {
+          width: 16px;
+          margin-right: 6px;
+          flex-shrink: 0;
+        }
+
+        input {
+          flex: 1;
+          border: none;
+          outline: none;
+          background: transparent;
+          font-size: 13px;
+          color: #111;
+          cursor: pointer;
+          min-width: 0;
+          pointer-events: none;
+        }
+
+        input::placeholder { color: #aaa; }
+
+        .input-icons-container-right {
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+        }
+
+        .chevron {
+          width: 14px;
+          height: 14px;
+          color: #888;
+          transition: transform 0.18s ease;
+          display: block;
+        }
+
+        .chevron.open { transform: rotate(180deg); }
+
+        /* ── custom-display-content slot (hidden by default) ── */
+        .custom-display-content { display: none; }
+
+        /* ── popover / dropdown ── */
+        .popover {
+          display: none;
+          position: absolute;
+          top: calc(100% + 3px);
+          left: 0;
+          right: 0;
+          z-index: 9999;
+          background: #fff;
+          border: 1px solid #ccd0d9;
+          border-radius: 8px;
+          box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+          max-height: 210px;
+          overflow-y: auto;
+          scrollbar-width: thin;
+        }
+
+        .popover.open { display: block; }
+
+        /* ── options ── */
+        .option {
+          padding: 8px 12px;
+          font-size: 13px;
+          cursor: pointer;
+          color: #111;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: background 0.1s;
+        }
+
+        .option:hover                   { background: #f4f6fa; }
+        .option[aria-selected="true"]   { background: #eef3fb; color: #1a5fa8; }
+        .option:first-child             { border-radius: 8px 8px 0 0; }
+        .option:last-child              { border-radius: 0 0 8px 8px; }
+        .option:only-child              { border-radius: 8px; }
+      </style>
+
+      <div class="field-container" id="fieldContainer">
+        <div class="label-wrapper">
+          <label for="${inputId}">${label}</label>
+        </div>
+
+        <div
+          class="input-container"
+          id="inputContainer"
+          tabindex="-1"
+          test-id="inputContainer"
+          role="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <div class="input-icons-container-left"></div>
+
+          <input
+            id="${inputId}"
+            type="text"
+            aria-required="true"
+            aria-invalid="false"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            autocomplete="off"
+            autocorrect="off"
+            placeholder="${placeholder}"
+            role="combobox"
+            readonly
+            test-id="inputField"
+            value="${this.selectedLabel}"
+          />
+
+          <div class="input-icons-container-right">
+            <svg class="chevron" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- custom-display-content: hidden slot used by host app -->
+        <div class="custom-display-content" hidden></div>
+
+        <!-- popover / listbox -->
+        <div class="popover" id="popover" role="listbox" aria-label="${label}">
+          ${this._optionData.map(o => `
+            <div
+              class="option"
+              role="option"
+              data-value="${o.value}"
+              aria-selected="${this._value === o.value}"
+              test-id="${o.testId}"
+            >${o.label}</div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  _bindEvents() {
+    const inputContainer = this._shadow.getElementById('inputContainer');
+    const popover        = this._shadow.getElementById('popover');
+    const chevron        = this._shadow.querySelector('.chevron');
+    const input          = this._shadow.querySelector('input');
+
+    /* toggle open/close */
+    inputContainer.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this._open = !this._open;
+      this._applyOpenState();
+    });
+
+    /* select an option */
+    popover.addEventListener('click', (e) => {
+      const opt = e.target.closest('.option');
+      if (!opt) return;
+
+      this._value      = opt.dataset.value;
+      input.value      = opt.textContent.trim();
+      this._open       = false;
+      this._applyOpenState();
+
+      /* update aria-selected on all options */
+      popover.querySelectorAll('.option').forEach(o => {
+        const selected = o.dataset.value === this._value;
+        o.setAttribute('aria-selected', selected);
+      });
+
+      /* dispatch change event so host can listen */
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: { value: this._value, label: input.value }
+      }));
+    });
+
+    /* close on outside click */
+    document.addEventListener('click', (e) => {
+      if (!this.contains(e.target)) {
+        this._open = false;
+        this._applyOpenState();
+      }
+    });
+
+    /* keyboard nav */
+    inputContainer.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this._open = !this._open;
+        this._applyOpenState();
+      }
+      if (e.key === 'Escape') {
+        this._open = false;
+        this._applyOpenState();
+      }
+    });
+  }
+
+  _applyOpenState() {
+    const popover        = this._shadow.getElementById('popover');
+    const chevron        = this._shadow.querySelector('.chevron');
+    const input          = this._shadow.querySelector('input');
+    const inputContainer = this._shadow.getElementById('inputContainer');
+
+    popover.classList.toggle('open', this._open);
+    chevron.classList.toggle('open', this._open);
+    input.setAttribute('aria-expanded', this._open);
+    inputContainer.setAttribute('aria-expanded', this._open);
+  }
+}
+
+customElements.define('q2-select', Q2Select);
+</script>
+
+<!-- ── Stamp the custom elements into the wrapper divs ── -->
+<script>
+  document.getElementById('recipient-wrapper').innerHTML = `
+    <q2-select
+      id="btnRecipient"
+      class="focus-control mrg-T-sm"
+      test-id="btnRecipient"
+      label="Message recipient"
+      placeholder="--Select Recipient--"
+      stencil-hydrated
+    >
+      <q2-option test-id="msgRecipientOption1"  tabindex="-1" aria-selected="false" role="option" value="1"  stencil-hydrated display="Customer Service">Customer Service</q2-option>
+      <q2-option test-id="msgRecipientOption3"  tabindex="-1" aria-selected="false" role="option" value="3"  stencil-hydrated display="Wire Transfer Services">Wire Transfer Services</q2-option>
+      <q2-option test-id="msgRecipientOption18" tabindex="-1" aria-selected="false" role="option" value="18" stencil-hydrated display="Travel Note">Travel Note</q2-option>
+    </q2-select>
+  `;
+
+  document.getElementById('subject-wrapper').innerHTML = `
+    <q2-select
+      id="btnSubject"
+      class="focus-control mrg-T-sm"
+      test-id="btnSubject"
+      label="Subject"
+      placeholder="--Select Subject--"
+      stencil-hydrated
+    >
+      <q2-option role="option" value="general"  display="General Inquiry">General Inquiry</q2-option>
+      <q2-option role="option" value="account"  display="Account Question">Account Question</q2-option>
+      <q2-option role="option" value="transfer" display="Transfer Question">Transfer Question</q2-option>
+    </q2-select>
+  `;
+</script>
+
+</body>
+</html>

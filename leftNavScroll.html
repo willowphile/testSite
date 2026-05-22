@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Scroll Behavior Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="firstfile.js"></script>
+    <script>
+        (function(apiKey) {
+            (function(p, e, n, d, o) {
+                var v, w, x, y, z;
+                o = p[d] = p[d] || {};
+                o._q = o._q || [];
+                v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
+                for (w = 0, x = v.length; w < x; ++w)(function(m) {
+                    o[m] = o[m] || function() {
+                        o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                    };
+                })(v[w]);
+                y = e.createElement(n);
+                y.async = !0;
+                y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
+                z = e.getElementsByTagName(n)[0];
+                z.parentNode.insertBefore(y, z);
+            })(window, document, 'script', 'pendo');
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            pendo.initialize({
+                //excludeAllText: true,
+                //DisableGuides: True,
+                visitor: {
+                    id: user_id, // Required if user is logged in
+                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name: user_full_name, // Recommended if using Pendo Feedback
+                    language: "en_GB",
+                    random: user_random_data
+                    //boolean:      user_boolean
+                    //date1:        user_date1
+                    //date2:        user_date2
+                },
+
+                account: {
+                    id: user_account_id, // Highly recommended
+                    type: user_account_type // Optional
+                },
+
+                parentAccount: {
+                    id: user_parent_account_id,
+                    name: user_parent_account_name,
+                    parentAccountOnly: 'yes'
+                }
+            });
+        })('87bea2e6-3d7c-47d8-76fd-2b2c05f0057a'); // app 2
+    </script>
+    <style>
+        :root {
+            --top-bar-h: 52px;
+            --nav-w: 220px;
+            --bg: #0e0f13;
+            --surface: #16181f;
+            --surface2: #1e2029;
+            --border: #2a2d3a;
+            --accent: #d184fb;
+            --accent2: #47c8ff;
+            --text: #d4d7e3;
+            --text-dim: #b0b5d8;
+            --nav-bg: #13141a;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden;
+            /* page itself does NOT scroll */
+        }
+
+        /* ── TOP BAR ── */
+        #topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--top-bar-h);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 100;
+            gap: 16px;
+        }
+
+        #topbar .logo {
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: .08em;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        #topbar .tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-dim);
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        #topbar .spacer {
+            flex: 1;
+        }
+
+        #topbar .mode-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--accent2);
+            letter-spacing: .06em;
+        }
+
+        /* ── LAYOUT SHELL ── */
+        #shell {
+            position: fixed;
+            top: var(--top-bar-h);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+        }
+
+        /* ── LEFT NAV ── */
+        #nav {
+            width: var(--nav-w);
+            flex-shrink: 0;
+            background: var(--nav-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            /* mode-D: when active, nav expands up behind top bar */
+            transition: top .2s;
+        }
+
+        /* Mode D: nav column starts at top:0 so items can scroll up behind the top bar */
+        body.mode-under #shell {
+            top: 0;
+        }
+
+        body.mode-under #nav {
+            padding-top: var(--top-bar-h);
+        }
+
+        body.mode-under #main {
+            margin-top: var(--top-bar-h);
+        }
+
+        #nav-header {
+            padding: 14px 16px 10px;
+            font-size: 10px;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-dim);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        /* THE SCROLLABLE CONTAINER — behavior controlled by JS */
+        #nav-scroll {
+            flex: 1;
+            overflow-y: auto;
+            /* hide scrollbar visually but still scrollable */
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        #nav-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #nav-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #nav-scroll::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dim);
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+            transition: background .15s, color .15s, opacity .3s, transform .3s;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-item:hover {
+            background: var(--surface2);
+            color: var(--text);
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+        }
+
+        .nav-item .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            flex-shrink: 0;
+            opacity: .5;
+        }
+
+        .nav-item.active .dot {
+            opacity: 1;
+        }
+
+        /* ── MAIN CONTENT ── */
+        #main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 40px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        h1 span {
+            color: var(--accent);
+        }
+
+        .desc {
+            font-family: 'Space Mono', serif;
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            max-width: 560px;
+            margin-bottom: 32px;
+        }
+
+        /* ── BEHAVIOR SWITCHER ── */
+        .switcher-label {
+            font-size: 10px;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-dim);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 560px;
+        }
+
+        .option-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: border-color .2s, background .2s;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .option-card:hover {
+            background: var(--surface2);
+        }
+
+        .option-card.selected {
+            border-color: var(--accent);
+        }
+
+        .option-card .opt-key {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 700;
+            min-width: 20px;
+            margin-top: 2px;
+        }
+
+        .option-card .opt-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .option-card .opt-desc {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .option-card.selected .opt-title {
+            color: var(--accent);
+        }
+
+        .active-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            background: var(--accent);
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 2px;
+            margin-left: 8px;
+            vertical-align: middle;
+            font-weight: 700;
+            letter-spacing: .05em;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 28px 0;
+        }
+
+        .note {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            background: var(--surface);
+            border-left: 3px solid var(--accent2);
+            padding: 12px 16px;
+            line-height: 1.7;
+            border-radius: 0 4px 4px 0;
+            max-width: 560px;
+        }
+
+        .note strong {
+            color: var(--accent2);
+        }
+
+        .buttonRainbow {
+            padding: 0.6em 2em;
+            border: none;
+            outline: none;
+            color: rgb(255, 255, 255);
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            font-size: 16px;
+        }
+
+        .buttonRainbow:before {
+            content: "";
+            background: linear-gradient(45deg,
+                    #ff0000,
+                    #ff7300,
+                    #fffb00,
+                    #48ff00,
+                    #00ffd5,
+                    #002bff,
+                    #7a00ff,
+                    #ff00c8,
+                    #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing-button-85 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing-button-85 {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .buttonRainbow:after {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- STATIC TOP BAR -->
+    <header id="topbar">
+        <span class="logo">◈ SCAFFOLD</span>
+        <span class="tag">layout-demo v1.0</span>
+        <div class="spacer"></div>
+        <span class="mode-label" id="mode-label">MODE: CLIP</span>
+    </header>
+
+    <!-- FIXED SHELL -->
+    <div id="shell">
+
+        <!-- LEFT NAV -->
+        <nav id="nav">
+            <div id="nav-header">Navigation</div>
+            <div id="nav-scroll">
+                <!-- items injected by JS -->
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main id="main">
+            <h1>Nav Scroll <span>Overflow</span>
+            <button onclick="launchGuide()" class="buttonRainbow" id="launchGuide" style="margin-left:50px">
+                <span>Launch guide</span>
+            </button>
+            </h1>
+            <script type="text/javascript">
+                function launchGuide() {
+                    pendo.showGuideById('zPCa3pTZR_7hgjqurT1QQwJgiMk');
+                    console.log("launch via button click");
+                }
+            </script>
+            <p class="desc">
+                The page and top bar are fixed. The left nav scrolls independently.<br>
+                Choose a behavior below to see what happens to nav items as they scroll off the top edge.
+            </p>
+
+            <div class="switcher-label">— overflow behavior options —</div>
+            <div class="switcher" id="switcher"></div>
+
+            <hr class="divider">
+
+            <p class="note">
+                <strong>Tip:</strong> Scroll the left nav up/down to see the selected behavior in action.
+                The top bar stays put. Items disappearing "under" it is the default browser clip behavior — but you can also fade them out, slide them away, or let them actually slide under the bar.
+            </p>
+        </main>
+
+    </div>
+
+    <script>
+        const navItems = [
+            "Dashboard", "Analytics", "Reports", "Settings", "Users", "Permissions",
+            "Integrations", "Webhooks", "API Keys", "Audit Log", "Billing", "Invoices",
+            "Subscriptions", "Usage", "Quotas", "Alerts", "Notifications", "Channels",
+            "Templates", "Workflows", "Automations", "Scheduler", "Queue", "Jobs",
+            "Deployments", "Releases", "Environments", "Secrets", "Variables", "Config",
+            "Logs", "Traces", "Metrics", "Uptime", "Incidents", "On-call", "Runbooks",
+            "Playbooks", "Support", "Feedback", "Help", "Documentation", "Changelog",
+            "Roadmap", "Profile", "Account", "Team", "SSO", "SAML", "SCIM"
+        ];
+
+        const scroll = document.getElementById('nav-scroll');
+
+        // Build nav
+        navItems.forEach((label, i) => {
+            const el = document.createElement('div');
+            el.className = 'nav-item' + (i === 0 ? ' active' : '');
+            el.dataset.index = i;
+            el.innerHTML = `<span class="dot"></span>${label}`;
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
+                el.classList.add('active');
+            });
+            scroll.appendChild(el);
+        });
+
+        // ── BEHAVIOR MODES ──
+        const modes = [{
+                key: 'A',
+                id: 'clip',
+                title: 'Hard Clip (default browser behavior)',
+                desc: 'Items scroll up and are cut off at the nav container edge — which sits right below the top bar. They disappear cleanly but there\'s no visual feedback that they\'re hidden.',
+                apply(items) {
+                    items.forEach(el => {
+                        el.style.opacity = '';
+                        el.style.transform = '';
+                        el.style.pointerEvents = '';
+                    });
+                    scroll.removeEventListener('scroll', scroll._handler);
+                    scroll._handler = null;
+                }
+            },
+            {
+                key: 'B',
+                id: 'fade',
+                title: 'Fade Out Near Top Edge',
+                desc: 'Items that are close to scrolling off-screen fade out gradually. They\'re still clipped but the visual softens the hard cut. Good UX hint that there\'s more content above.',
+                apply(items) {
+                    const handler = () => {
+                        const containerTop = scroll.getBoundingClientRect().top;
+                        items.forEach(el => {
+                            const rect = el.getBoundingClientRect();
+                            const distFromTop = rect.bottom - containerTop;
+                            const fadeZone = 60;
+                            if (distFromTop < 0) {
+                                el.style.opacity = '0';
+                            } else if (distFromTop < fadeZone) {
+                                el.style.opacity = (distFromTop / fadeZone).toFixed(2);
+                            } else {
+                                el.style.opacity = '1';
+                            }
+                            el.style.transform = '';
+                        });
+                    };
+                    if (scroll._handler) scroll.removeEventListener('scroll', scroll._handler);
+                    scroll._handler = handler;
+                    scroll.addEventListener('scroll', handler);
+                    handler();
+                }
+            },
+            {
+                key: 'C',
+                id: 'slide',
+                title: 'Slide Left Off-Screen',
+                desc: 'Items translate left as they approach the top, giving a "slide into the wall" feel. Items exit laterally while the container still clips vertically. Adds a sense of depth.',
+                apply(items) {
+                    const handler = () => {
+                        const containerTop = scroll.getBoundingClientRect().top;
+                        items.forEach(el => {
+                            const rect = el.getBoundingClientRect();
+                            const distFromTop = rect.bottom - containerTop;
+                            const zone = 80;
+                            el.style.opacity = '';
+                            if (distFromTop < 0) {
+                                el.style.transform = 'translateX(-100%)';
+                            } else if (distFromTop < zone) {
+                                const pct = 1 - (distFromTop / zone);
+                                el.style.transform = `translateX(-${(pct * 100).toFixed(1)}%)`;
+                            } else {
+                                el.style.transform = 'translateX(0)';
+                            }
+                        });
+                    };
+                    if (scroll._handler) scroll.removeEventListener('scroll', scroll._handler);
+                    scroll._handler = handler;
+                    scroll.addEventListener('scroll', handler);
+                    handler();
+                }
+            },
+            {
+                key: 'D',
+                id: 'under',
+                title: 'Slide Under the Top Bar',
+                desc: 'The nav extends up behind the top bar. As you scroll, items physically travel up and disappear behind it — masked by the bar\'s z-index. Like a physical shelf items slide under.',
+                apply(items) {
+                    items.forEach(el => {
+                        el.style.opacity = '';
+                        el.style.transform = '';
+                        el.style.pointerEvents = '';
+                    });
+                    if (scroll._handler) scroll.removeEventListener('scroll', scroll._handler);
+                    scroll._handler = null;
+                    scroll.style.overflow = 'auto';
+                    document.body.classList.add('mode-under');
+                }
+            }
+        ];
+
+        // Reset nav overflow to scroll for all but mode D
+        function resetNavOverflow() {
+            scroll.style.overflow = 'auto';
+            scroll.parentElement.style.overflow = '';
+            document.body.classList.remove('mode-under');
+        }
+
+        let current = 'clip';
+
+        const switcher = document.getElementById('switcher');
+        const modeLabel = document.getElementById('mode-label');
+
+        modes.forEach(mode => {
+            const card = document.createElement('div');
+            card.className = 'option-card' + (mode.id === current ? ' selected' : '');
+            card.dataset.id = mode.id;
+            card.innerHTML = `
+      <div class="opt-key">${mode.key}</div>
+      <div>
+        <div class="opt-title">${mode.title}${mode.id === current ? '<span class="active-badge">ACTIVE</span>' : ''}</div>
+        <div class="opt-desc">${mode.desc}</div>
+      </div>`;
+            card.addEventListener('click', () => {
+                if (mode.id !== 'under') resetNavOverflow();
+                modes.forEach(m => m._card.querySelector('.opt-title').innerHTML = m.title);
+                document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                card.querySelector('.opt-title').innerHTML = mode.title + '<span class="active-badge">ACTIVE</span>';
+                current = mode.id;
+                modeLabel.textContent = `MODE: ${mode.key}`;
+                const items = [...document.querySelectorAll('.nav-item')];
+                // reset all first
+                items.forEach(el => {
+                    el.style.opacity = '';
+                    el.style.transform = '';
+                });
+                mode.apply(items);
+            });
+            mode._card = card;
+            switcher.appendChild(card);
+        });
+
+        // Apply default
+        modes[0].apply([...document.querySelectorAll('.nav-item')]);
+
+        document.addEventListener('wheel', (e) => {
+            const nav = document.getElementById('nav-scroll');
+            // only if cursor is over the nav column
+            if (e.clientX < 220) { // your nav width
+                nav.scrollTop += e.deltaY;
+                e.preventDefault();
+            }
+        }, {
+            passive: false
+        });
+    </script>
+</body>
+
+</html>

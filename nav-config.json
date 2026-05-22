@@ -1,0 +1,263 @@
+{
+  "left": [
+    {
+      "type": "link",
+      "href": "Home.html",
+      "label": "Home"
+    },
+    {
+      "type": "dropdown",
+      "label": "Tools",
+      "items": [
+        {
+          "href": "deletedProductAreas.html",
+          "label": "Group JSON to CSV"
+        },
+        {
+          "href": "guideHistoryToCsv.html",
+          "label": "Pendo Guide History → CSV (Client‑side)"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "label": "The Basics",
+      "items": [
+        {
+          "href": "basic.html",
+          "label": "Overly Simplistic"
+        },
+        {
+          "href": "sheBasic.html",
+          "label": "She Basic"
+        },
+        {
+          "href": "anonymous.html",
+          "label": "Anonymous"
+        },
+        {
+          "href": "anonNew.html",
+          "label": "Alisyn's Anonymous"
+        },
+        {
+          "href": "barebones.html",
+          "label": "Barebones"
+        },
+        {
+          "href": "topFrame.html",
+          "label": "All the Frames"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "label": "Special Installs",
+      "items": [
+        {
+          "href": "customInitializes.html",
+          "label": "Custom Initializes"
+        },
+        {
+          "href": "gtm.html",
+          "label": "GTM"
+        },
+        {
+          "href": "GTMwVars.html",
+          "label": "GTM with Variables"
+        },
+        {
+          "href": "segment.html",
+          "label": "Segment"
+        },
+        {
+          "href": "segmentNew.html",
+          "label": "Segment New"
+        },
+        {
+          "href": "segmentNewSub.html",
+          "label": "Segment New Sub"
+        },
+        {
+          "href": "locationApi.html",
+          "label": "Location API"
+        },
+        {
+          "href": "sanitizeUrl.html",
+          "label": "Sanitize URL"
+        },
+        {
+          "href": "localStorage.html",
+          "label": "Local Storage"
+        },
+        {
+          "href": "localStorage2.html",
+          "label": "Local Storage 2"
+        },
+        {
+          "href": "excludeNonGuideAnalytics.html",
+          "label": "excludeNonGuideAnalytics"
+        },
+        {
+          "href": "initAndUpdate.html",
+          "label": "Simultaneous Initialize and Update"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "label": "Just Random Things",
+      "items": [
+        {
+          "href": "disappearingElements.html",
+          "label": "Show/Hide Elements"
+        },
+        {
+          "href": "modal.html",
+          "label": "Scrollable Modal"
+        },
+        {
+          "href": "cssTest.html",
+          "label": "CSS Test"
+        },
+        {
+          "href": "warlock.html",
+          "label": "Warlock"
+        },
+        {
+          "href": "hunter.html",
+          "label": "Hunter"
+        },
+        {
+          "href": "titan.html",
+          "label": "Crayon-eater"
+        },
+        {
+          "href": "race.html",
+          "label": "Race!"
+        },
+        {
+          "href": "testNew.html",
+          "label": "New Test Site"
+        },
+        {
+          "href": "training.html",
+          "label": "Training"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "label": "Elementals",
+      "items": [
+        {
+          "href": "disappearingElements.html",
+          "label": "Show/Hide Elements"
+        },
+        {
+          "href": "shadow.html",
+          "label": "Shadow DOM"
+        },
+        {
+          "href": "modal.html",
+          "label": "Scrollable Modal"
+        },
+        {
+          "href": "cssTest.html",
+          "label": "CSS Test"
+        },
+        {
+          "href": "cse_shadowdom.html",
+          "label": "CSE Shadows"
+        },
+        {
+          "href": "light-dom-message-form.html",
+          "label": "Light DOM Recipient Dropdown"
+        },
+        {
+          "href": "shadow-dom-message-form.html",
+          "label": "Shadow DOM Message Form"
+        },
+        {
+          "href": "nestedShadow.html",
+          "label": "Nested Shadow DOM demo"
+        },
+        {
+          "href": "weirdShadow.html",
+          "label": "weirdShadow.html"
+        },
+        {
+          "href": "grossDivs.html",
+          "label": "grossDivs"
+        },
+        {
+          "href": "accordion.html",
+          "label": "Z-Index Accordion"
+        },
+        {
+          "href": "accordion1.html",
+          "label": "Accordion Example"
+        },
+        {
+          "href": "labelTest.html",
+          "label": "Label / Radio Click Test"
+        },
+        {
+          "href": "leftNavScroll.html",
+          "label": "Nav Scroll Behavior Demo"
+        },
+        {
+          "href": "topLevelDialog.html",
+          "label": "topLevelDialog.html"
+        },
+        {
+          "href": "enterprisetest.html",
+          "label": "Three‑Panel Layout"
+        },
+        {
+          "href": "eyesore.html",
+          "label": "★~* MySpace Vibes *~★"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "label": "Other apps/subs",
+      "items": [
+        {
+          "href": "cats.html",
+          "label": "Cats"
+        },
+        {
+          "href": "Darkness.html",
+          "label": "Dark"
+        },
+        {
+          "href": "darkAnonymous.html",
+          "label": "Anon"
+        },
+        {
+          "href": "secondSub.html",
+          "label": "secondSub.html"
+        },
+        {
+          "href": "SinglePageSite/index.html",
+          "label": "SinglePage"
+        },
+        {
+          "href": "training-eu.html",
+          "label": "EU"
+        }
+      ]
+    }
+  ],
+  "right": [],
+  "skip": [
+    "index.html",
+    "navbar.html",
+    "template.html",
+    "iframe.html",
+    "iframe2.html",
+    "iframeSide.html",
+    "home.html"
+  ]
+}

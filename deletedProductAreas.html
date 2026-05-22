@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group JSON to CSV</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --panel: #f6f7f9;
+      --border: #d9dde3;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --success: #047857;
+      --error: #b91c1c;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #190C1C;
+        --panel: #26122B;
+        --border: #374151;
+        --text: #f3f4f6;
+        --muted: #9ca3af;
+        --accent: #107E7D;
+        --accent-hover: #0C5A59;
+        --success: #34d399;
+        --error: #f87171;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    .sub {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 380px;
+      resize: vertical;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+    }
+
+    button:hover { background: var(--accent-hover); }
+    button.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .status {
+      margin-top: 14px;
+      min-height: 24px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .status.success { color: var(--success); }
+    .status.error { color: var(--error); }
+
+    .meta {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hint {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    code {
+      background: rgba(127, 127, 127, 0.12);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Group JSON to CSV</h1>
+    <p class="sub">Paste your JSON array on the left. Get a CSV on the right with columns <code>groupId,name,Type,itemId</code>.</p>
+
+    <div class="grid">
+      <section class="panel">
+        <label for="jsonInput">Input JSON</label>
+        <textarea id="jsonInput" placeholder='Paste your JSON array here...'></textarea>
+        <div class="buttons">
+          <button id="convertBtn">Convert to CSV</button>
+          <button id="sampleBtn" class="secondary">Load sample</button>
+          <button id="clearBtn" class="secondary">Clear</button>
+        </div>
+        <div id="status" class="status"></div>
+        <div id="meta" class="meta"></div>
+        <div class="hint">
+          The parser pulls the group ID and name from <code>textPayload</code>, then extracts each member as <code>Type</code> and <code>itemId</code>.
+        </div>
+      </section>
+
+      <section class="panel">
+        <label for="csvOutput">CSV Output</label>
+        <textarea id="csvOutput" placeholder='CSV will appear here...' readonly></textarea>
+        <div class="buttons">
+          <button id="copyBtn">Copy CSV</button>
+          <button id="downloadBtn" class="secondary">Download CSV</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const jsonInput = document.getElementById('jsonInput');
+    const csvOutput = document.getElementById('csvOutput');
+    const statusEl = document.getElementById('status');
+    const metaEl = document.getElementById('meta');
+
+    const sampleData = [
+      {
+        textPayload: 'Deleting ItemGroup: {StringKey:{Key:/ItemGroup,_PENDO_UNGROUPED_/ItemGroup,P6PoxNbuxj7jWSqE9ZWgi7Zu5RE} CreatedUpdatedInfo:{CreatedByUserKey:/User,6210665217589248 CreatedAt:2026-02-26 20:31:09.301373 +0000 UTC LastUpdatedByUserKey:/User,6210665217589248 LastUpdatedAt:2026-02-26 20:31:50.356918 +0000 UTC} AppKey: AppKeys:[] Attributes: Name:IQ | Global Navigation Description: Color:.groupColor07 FeedbackProductId: FeedbackVisibility: Members:[/Feature,F0gWY_v0kX-Vp9iy4EB1K5PjnpU /Feature,O8jTOuZADkykJm4Won-CAHmGitc /Feature,LNgZvuGnm9m0CMyfUceUZdEfGA4 /Feature,wLYT3KMya1TTk_Rh-W7BWEmOI38 /Feature,x8uNKwfoBr7aylKnpJEdHS0rUGc] TeamKeys:[] Type:group}'
+      }
+    ];
+
+    function setStatus(message, type = '') {
+      statusEl.textContent = message;
+      statusEl.className = `status ${type}`.trim();
+    }
+
+    function escapeCsv(value) {
+      const str = String(value ?? '');
+      if (/[",\n]/.test(str)) {
+        return '"' + str.replace(/"/g, '""') + '"';
+      }
+      return str;
+    }
+
+    function parseTextPayload(textPayload) {
+      const groupIdMatch = textPayload.match(/StringKey:\{Key:\/ItemGroup,_PENDO_UNGROUPED_\/ItemGroup,([^}]+)\}/);
+      const groupId = groupIdMatch ? groupIdMatch[1].trim() : null;
+
+      const nameMatch = textPayload.match(/Name:(.*?) Description:/);
+      const name = nameMatch ? nameMatch[1].trim() : null;
+
+      const membersMatch = textPayload.match(/Members:\[(.*?)\] TeamKeys:/);
+      const membersRaw = membersMatch ? membersMatch[1].trim() : '';
+
+      const members = [];
+      const memberRegex = /\/([^,\s]+),([^\s\]]+)/g;
+      let match;
+
+      while ((match = memberRegex.exec(membersRaw)) !== null) {
+        members.push({
+          type: match[1],
+          itemId: match[2]
+        });
+      }
+
+      return { groupId, name, members };
+    }
+
+    function convertJsonToCsv(rawJson) {
+      const parsed = JSON.parse(rawJson);
+      if (!Array.isArray(parsed)) {
+        throw new Error('Input must be a JSON array.');
+      }
+
+      const rows = [];
+
+      for (const item of parsed) {
+        if (!item || typeof item.textPayload !== 'string') continue;
+
+        const { groupId, name, members } = parseTextPayload(item.textPayload);
+        if (!groupId || members.length === 0) continue;
+
+        for (const member of members) {
+          rows.push({
+            groupId,
+            name,
+            Type: member.type,
+            itemId: member.itemId
+          });
+        }
+      }
+
+      const header = ['groupId', 'name', 'Type', 'itemId'];
+      const csvLines = [header.join(',')];
+
+      for (const row of rows) {
+        csvLines.push([
+          escapeCsv(row.groupId),
+          escapeCsv(row.name),
+          escapeCsv(row.Type),
+          escapeCsv(row.itemId)
+        ].join(','));
+      }
+
+      return { csv: csvLines.join('\n'), rowCount: rows.length, groupCount: new Set(rows.map(r => r.groupId)).size };
+    }
+
+    document.getElementById('convertBtn').addEventListener('click', () => {
+      try {
+        const raw = jsonInput.value.trim();
+        if (!raw) {
+          setStatus('Paste some JSON first.', 'error');
+          csvOutput.value = '';
+          metaEl.textContent = '';
+          return;
+        }
+
+        const result = convertJsonToCsv(raw);
+        csvOutput.value = result.csv;
+        setStatus('CSV ready.', 'success');
+        metaEl.textContent = `${result.rowCount} row(s) across ${result.groupCount} group(s).`;
+      } catch (error) {
+        csvOutput.value = '';
+        metaEl.textContent = '';
+        setStatus(`Could not parse input: ${error.message}`, 'error');
+      }
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      if (!csvOutput.value) {
+        setStatus('Nothing to copy yet.', 'error');
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(csvOutput.value);
+        setStatus('CSV copied to clipboard.', 'success');
+      } catch {
+        setStatus('Clipboard copy failed. You can still select and copy manually.', 'error');
+      }
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      if (!csvOutput.value) {
+        setStatus('Nothing to download yet.', 'error');
+        return;
+      }
+
+      const blob = new Blob([csvOutput.value], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'group-members.csv';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      setStatus('CSV downloaded.', 'success');
+    });
+
+    document.getElementById('sampleBtn').addEventListener('click', () => {
+      jsonInput.value = JSON.stringify(sampleData, null, 2);
+      setStatus('Sample loaded.', 'success');
+      metaEl.textContent = '';
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      jsonInput.value = '';
+      csvOutput.value = '';
+      metaEl.textContent = '';
+      setStatus('Cleared. Fresh slate.', '');
+    });
+  </script>
+</body>
+</html>
