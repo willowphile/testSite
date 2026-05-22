@@ -2,7 +2,7 @@
   "left": [
     {
       "type": "link",
-      "href": "Home.html",
+      "href": "index.html",
       "label": "Home"
     },
     {
@@ -250,7 +250,6 @@
       ]
     }
   ],
-  "right": [],
   "skip": [
     "index.html",
     "navbar.html",
