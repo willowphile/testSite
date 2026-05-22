@@ -5,60 +5,125 @@
     <script src="firstfile.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
+        function annotateUrl() {
+            var toDrop = ['titan'];
+            var toAdd = {
+                wellActually: 'CRAYONS'
+            };
+            return {
+                include: toAdd
+            };
+        };
+    </script>
+
+    <script>
         (function(apiKey) {
             (function(p, e, n, d, o) {
                 var v, w, x, y, z;
                 o = p[d] = p[d] || {};
-                o._q = o._q || [];
+                o._q = [];
                 v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track'];
-                for (w = 0, x = v.length; w < x; ++w)(function(m) {
-                    o[m] = o[m] || function() {
-                        o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
-                    };
-                })(v[w]);
+                for (w = 0, x = v.length; w < x; ++w)
+                    (function(m) {
+                        o[m] = o[m] || function() {
+                            o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0)));
+                        };
+                    })(v[w]);
                 y = e.createElement(n);
                 y.async = !0;
+
                 y.src = 'https://cdn.pendo.io/agent/static/' + apiKey + '/pendo.js';
                 z = e.getElementsByTagName(n)[0];
                 z.parentNode.insertBefore(y, z);
             })(window, document, 'script', 'pendo');
+
+            // Call this whenever information about your visitors becomes available
+            // Please use Strings, Numbers, or Bools for value types.
+            // pendo.stopSendingEvents();
             pendo.initialize({
+                // excludeAllText: true,
+                // allowedText: ["This doesn't match"],
                 visitor: {
-                    id: user_id,
-                    email: user_email,
-                    full_name: user_full_name,
-                    language: "en_GB",
-                    random: user_random_data
+                    id: user_id, // Required if user is logged in
+                    email: user_email, // Recommended if using Pendo Feedback, or NPS Email
+                    full_name: user_full_name, // Recommended if using Pendo Feedback
+                    lang: "en_US",
+                    random: user_random_data,
+                    boolean: user_boolean,
+                    ee326: "this shouldn't process",
+                    newfieldtodelete: "casing will get you every time",
+                    anothernewfieldtodelete: "casing will get you every time",
+                    //date1:        user_date1
+                    //date2:        user_date2
                 },
 
                 account: {
-                    id: user_account_id,
-                    type: user_account_type
+                    id: user_account_id, // Highly recommended
+                    type: user_account_type // Optional
                 },
 
                 parentAccount: {
                     id: user_parent_account_id,
                     name: user_parent_account_name,
                     parentAccountOnly: 'yes'
-                }
+                },
+                annotateUrl: annotateUrl,
+                disableGuides: false
             });
+
         })('a93e68a6-46fd-443a-699f-aa31985c066d');
     </script>
 
-    <title>Page Title</title>
+    <!-- Start of d3v-pendo-ts-test Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=70be359a-9c3d-41ee-9923-3011e9451a80"> </script>
+    <!-- End of d3v-pendo-ts-test Zendesk Widget script -->
+
+    <!--   <style>
+    select {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+  </style> -->
+    <!--   <script>
+    console.log = function () { }
+    console.group = function () { }
+  </script> -->
+
+
+    <title>Alisyn's Playground</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" type="image/jpg" href="engram.ico" />
+
+
+    <!--   <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' app.pendo.io pendo-io-static.storage.googleapis.com cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+  style-src 'unsafe-inline' app.pendo.io cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+  img-src cdn.pendo.io app.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+  connect-src app.pendo.io data.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+  frame-ancestors app.pendo.io;
+  frame-src app.pendo.io;
+  child-src app.pendo.io;" /> -->
+
+
+    <!--Pendo full csp
+    script-src 'unsafe-inline' 'unsafe-eval' app.pendo.io pendo-io-static.storage.googleapis.com cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+    style-src 'unsafe-inline' app.pendo.io cdn.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+    img-src cdn.pendo.io app.pendo.io pendo-static-5745181794369536.storage.googleapis.com data.pendo.io;
+    connect-src app.pendo.io data.pendo.io pendo-static-5745181794369536.storage.googleapis.com;
+    frame-ancestors app.pendo.io;
+    frame-src app.pendo.io;
+    child-src app.pendo.io;
+    -->
 </head>
 
-<body>
+<body data-theme="light">
 
     <div class="header">
-        <img class="headerIcon" src="img/7513466.png" width="20"><br><br>
-        <h1>Hello</h1>
-        <p>I am a website</p>
-        <p>You are <span id="visitorHeader"></span></p>
+        <h1>Oh hai</h1>
+        <p>I am Alisyn's test site</p>
+        <p id="visitorHeader"></p>
         <script>
             function visitorHeader() {
                 window.setInterval(function getvisitorHeader() {
@@ -66,9 +131,10 @@
                     document.getElementById("visitorHeader").innerHTML = pendo.getVisitorId();
                 }, 1000);
             }
-            setTimeout(visitorHeader, 1000);
+            setTimeout(visitorHeader, 5000);
         </script>
     </div>
+
 
     <!--Navigation bar-->
     <div id="nav-placeholder">
@@ -85,26 +151,146 @@
     <div class="row">
         <div class="side">
             <h2>Stuff</h2>
-            <img src="img/rainbowEmblem.png" width="300"><br>
+            <img src="img/rainbowEmblem.png" width="300" autofocus><br>
             <img src="img/catEmblem.png" width="300"><br>
             <img src="img/heartEmblem.png" width="300"><br>
-            <p>Lorem ipsum nightstalker fatebringer.</p>
+            <br>
+            <SCRIPT LANGUAGE="JAVASCRIPT">
+                var r_text = new Array();
+                r_text[0] = "Lorem ipsum nightstalker fatebringer.";
+                r_text[1] = "Lorem ipsum witherhoard ikelos.";
+                r_text[2] = "Lorem ipsum stasis thunderlord.";
 
+                var i = Math.floor(r_text.length * Math.random());
+
+                document.write(r_text[i]);
+            </script>
         </div>
-        <div class="main">
+        <div id="mainDiv" class="main" title="blah blah (AgathaHarkness)">
             <div>
-                <!-- this is an example button -->
-                <button onclick="dummyClick()" class="buttonRainbow" id="dummyClick" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Click me for a dummy event!</button>
+                <button title="saliBabby" onclick="dummyClick()" class="buttonRainbow" id="dummyClick" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>
+                    <span>Click me for a dummy event!</span>
+                </button>
                 <script type="text/javascript">
                     function dummyClick() {
                         console.log("yeah, it's clicked");
                     }
                 </script>
             </div>
+            <div>
+                <button title="saliBabby" onclick="dummyClick2()" class="buttonRainbow" id="lorrrrdt" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>
+                    <span>This site is a shaky house of cards</span>
+                </button>
+                <script type="text/javascript">
+                    function dummyClick2() {
+                        console.log("yeah, it's clicked");
+                    }
+                </script>
+            </div>
+            <br>
+
+            <div>
+                <a href="warlock.html">
+                    <button class="buttonRainbow" id="backToBasics" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Back to
+                        warlock</button>
+                </a>
+            </div>
+            <div>
+                <a href="warlock.html">
+                    <button class="buttonRainbow" id="backToBasics2" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>Back to
+                        warlock</button>
+                </a>
+            </div>
+            <div>
+                <button class="buttonRainbow" onclick="dummyClick3()" id="stopSending" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>stopSending</button>
+                <script type="text/javascript">
+                    function dummyClick3() {
+                        console.log("yeah, stopSending's been clicked");
+                    }
+                </script>
+            </div>
+            <div>
+                <button title="getDisabled" class="buttonRainbow" id="getDisabled" style='padding: 0px 10px; ;border: solid 1px black; height: 40px;vertical-align: middle;'>
+                    <span id="tagMe">get disabled</span>
+                </button>
+                <script>
+                    const getDisabled = document.querySelector('#getDisabled');
+                    getDisabled.addEventListener('click', () => {
+                        this.setAttribute('aria-disabled', 'true');
+                    });
+                </script>
+            </div>
+            <br>
+            <div>
+                <aside>
+                    <h3>Aside Section</h3>
+                    <p>This is an aside section with some additional information.</p>
+                    <ul>
+                        <li>Point One</li>
+                        <li>Point Two</li>
+                        <li>Point Three</li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div>
+                <img id="testImg" src="img/dumpsterFire.gif" width="500">
+            </div>
+
+
+            <!-- <div id="imageDiv" style="display: flex; opacity: 0; margin-left: 20%;"><img id="dumpsterFire" src="img/dumpsterFire.gif" width="500"><br></div> -->
+            <!-- <iframe src="cats.html" height="800" width="75%" title="Cats" style="border:1px solid black;"></iframe>
+            <iframe sandbox src="topframe.html" height="800" width="75%" title="iframeception" style="border:1px solid black;"></iframe>
+            <iframe src="innerframe.html" height="800" width="75%" title="iframeception" id="iframeception" style="border:1px solid black;"></iframe>
+            <iframe src="topframe.html" height="800" width="75%" title="iframeception" id="what frame even is this?" style="border:1px solid black;"></iframe> -->
         </div>
     </div>
+    <!-- <script>
+    const pendoController = {
+      pendo: window.pendo, // get the global Pendo object if it exists
 
+      optOut: function () {
+        // Only call stopSendingEvents if pendo exists
+        if (this.pendo && typeof this.pendo.stopSendingEvents === 'function') {
+          this.pendo.stopSendingEvents();
+          console.log('User has opted out of Pendo tracking.');
+        } else {
+          console.warn('Pendo is not available.');
+        }
+      }
+    };
+  </script> -->
+    <!-- <script>
+    // check to see if pendo exists AND pendo.isReady is a function.
+    // if true, set pendo.excludeAllText to false, otherwise retry after a delay.
+    function waitForPendoReady(callback, retryInterval = 500, maxAttempts = 20) {
+      let attempts = 0;
+      const check = () => {
+        attempts++;
+        // check to see if pendo exists AND pendo.isReady is a function
+        if (window.pendo && typeof pendo.isReady === "function") {
+          // Now check if pendo is ready
+          if (pendo.isReady()) {
+            callback();
+            return;
+          }
+        }
+        // give up all hope after max attempts
+        if (attempts >= maxAttempts) {
+          console.warn("[EAT] Pendo is not ready after max attempts.");
+          return;
+        }
+        setTimeout(check, retryInterval);
+      };
+      check();
+    }
 
+    // once we're sure pendo is ready, set excludeAllText to false :tada:
+    waitForPendoReady(() => {
+      pendo.excludeAllText = false;
+      console.log("[EAT] Pendo is ready, excludeAllText set to false.");
+    });
+  </script> -->
 </body>
 
 </html>
