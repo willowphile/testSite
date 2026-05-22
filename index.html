@@ -101,39 +101,6 @@
                     }
                 </script>
             </div>
-            <div>
-                <button onclick="loadPageList()" class="buttonRainbow" style='padding: 0px 10px; border: solid 1px black; height: 40px; vertical-align: middle; margin-top: 12px;'>List all pages</button>
-                <div id="page-list" style="margin-top: 12px;"></div>
-                <script type="text/javascript">
-                    async function loadPageList() {
-                        const container = document.getElementById('page-list');
-                        container.innerHTML = 'Loading...';
-
-                        let files;
-                        try {
-                            const res = await fetch('/api/files');
-                            if (!res.ok) throw new Error(res.status);
-                            files = await res.json();
-                        } catch (e) {
-                            container.innerHTML = '<em>Could not load file list. Make sure you are running <code>python3 server.py</code> instead of <code>python -m http.server</code>.</em>';
-                            return;
-                        }
-
-                        if (files.length === 0) {
-                            container.innerHTML = '<em>No HTML files found.</em>';
-                            return;
-                        }
-
-                        container.innerHTML = '<table style="border-collapse:collapse; width:100%;">' +
-                            '<thead><tr><th style="text-align:left; padding:6px 12px; border-bottom:2px solid #ccc;">Title</th><th style="text-align:left; padding:6px 12px; border-bottom:2px solid #ccc;">File</th></tr></thead>' +
-                            '<tbody>' +
-                            files.map(f =>
-                                `<tr><td style="padding:5px 12px;"><a href="${f.href}">${f.label}</a></td><td style="padding:5px 12px; color:#888; font-size:0.9em;">${f.href}</td></tr>`
-                            ).join('') +
-                            '</tbody></table>';
-                    }
-                </script>
-            </div>
         </div>
     </div>
 
